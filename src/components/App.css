@@ -4,21 +4,3 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.title {
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 1em;
-}
-
-.App-link {
-  color: #09d3ac;
-}
-
-.nav {
-  display: flex;
-}
-
-.nav a {
-  margin: 1em;
-}
