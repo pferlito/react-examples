@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
 import Modal from "./routes/Modal";
 import Nav from "react-bootstrap/Nav";
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -14,8 +14,10 @@ const routing = (
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/modal">Modal</Nav.Link>
     </Nav>
-      <Route exact path="/" component={App}/>
-      <Route path="/modal" component={Modal}/>
+    <Switch>
+      <Route exact path="/"><App /></Route>
+      <Route path="/modal"><Modal /></Route>
+    </Switch>
   </Router>
 );
 
