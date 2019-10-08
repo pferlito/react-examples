@@ -4,6 +4,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
 import ModalPage from "./routes/ModalPage";
+import FormPage from "./routes/FormPage";
 import Nav from "react-bootstrap/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
@@ -13,10 +14,12 @@ const routing = (
     <Nav>
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/modal">Modal</Nav.Link>
+      <Nav.Link href="/form">Form</Nav.Link>
     </Nav>
     <Switch>
       <Route exact path="/"><App /></Route>
       <Route path="/modal"><ModalPage /></Route>
+      <Route path="/form"><FormPage /></Route>
     </Switch>
   </Router>
 );
