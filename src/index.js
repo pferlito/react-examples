@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
-import Modal from "./routes/Modal";
+import ModalPage from "./routes/ModalPage";
 import Nav from "react-bootstrap/Nav";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -16,7 +16,7 @@ const routing = (
     </Nav>
     <Switch>
       <Route exact path="/"><App /></Route>
-      <Route path="/modal"><Modal /></Route>
+      <Route path="/modal"><ModalPage /></Route>
     </Switch>
   </Router>
 );
