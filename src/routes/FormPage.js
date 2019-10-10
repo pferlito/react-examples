@@ -1,52 +1,69 @@
-import React, {useState} from 'react';
+import React, { useState, Fragment } from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+
+function TextField({id,label,state,handleChange}) {
+  return (
+    <Fragment>
+      <label htmlFor={id}>{label}</label>
+      <input type="text" className="form-control" id={id}
+             onChange={handleChange}
+             placeholder=""
+             value={state.firstName}/>
+    </Fragment>
+  );
+}
 
 function BillingForm({state,handleChange}) {
   return (
     <form>
       <Row>
         <Col md={6} className="mb-3">
-          <label htmlFor="firstName">First name</label>
-          <input type="text" className="form-control" id="firstName"
-                 onChange={handleChange}
-                 placeholder=""
-                 value={state.firstName}/>
+          <TextField
+            id="firstName"
+            label="First name"
+            state={state}
+            handleChange={handleChange}
+            />
         </Col>
         <Col md={6} className="mb-3">
-          <label htmlFor="lastName">Last name</label>
-          <input type="text" className="form-control" id="lastName"
-                 onChange={handleChange}
-                 placeholder=""
-                 value={state.lastName}/>
+          <TextField
+            id="lastName"
+            label="Last name"
+            state={state}
+            handleChange={handleChange}
+          />
         </Col>
       </Row>
       <Row>
         <Col className="mb-3">
-          <label htmlFor="email">Email</label>
-          <input type="email" className="form-control" id="email"
-                 onChange={handleChange}
-                 placeholder=""
-                 value={state.email}/>
+          <TextField
+            id="email"
+            label="Email"
+            state={state}
+            handleChange={handleChange}
+          />
         </Col>
       </Row>
       <Row>
         <Col className="mb-3">
-          <label htmlFor="address">Address</label>
-          <input type="text" className="form-control" id="address"
-                 onChange={handleChange}
-                 placeholder=""
-                 value={state.address}/>
+          <TextField
+            id="address"
+            label="Address"
+            state={state}
+            handleChange={handleChange}
+          />
         </Col>
       </Row>
       <Row>
         <Col className="mb-3">
-          <label htmlFor="address">Address 2 (optional)</label>
-          <input type="text" className="form-control" id="address2"
-                 onChange={handleChange}
-                 placeholder=""
-                 value={state.address2}/>
+          <TextField
+            id="address2"
+            label="Address 2 (optional)"
+            state={state}
+            handleChange={handleChange}
+          />
         </Col>
       </Row>
       <Row>
@@ -67,11 +84,12 @@ function BillingForm({state,handleChange}) {
           </select>
         </Col>
         <Col md={4} className="mb-3">
-          <label htmlFor="firstName">Zip</label>
-          <input type="text" className="form-control" id="zip"
-                 onChange={handleChange}
-                 placeholder=""
-                 value={state.zip}/>
+          <TextField
+            id="zip"
+            label="Zip"
+            state={state}
+            handleChange={handleChange}
+          />
         </Col>
       </Row>
       <hr className="mb-4" />
