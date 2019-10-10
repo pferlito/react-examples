@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
 function BillingForm({state,handleChange}) {
-
   return (
     <form>
       <Row>
@@ -41,6 +40,41 @@ function BillingForm({state,handleChange}) {
                  value={state.address}/>
         </Col>
       </Row>
+      <Row>
+        <Col className="mb-3">
+          <label htmlFor="address">Address 2 (optional)</label>
+          <input type="text" className="form-control" id="address2"
+                 onChange={handleChange}
+                 placeholder=""
+                 value={state.address2}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={4} className="mb-3">
+          <label htmlFor="country">Country</label>
+          <select className="custom-select" id="country"
+                  onChange={handleChange}>
+            <option value="">Country...</option>
+            <option>United States</option>
+          </select>
+        </Col>
+        <Col md={4} className="mb-3">
+          <label htmlFor="state">State</label>
+          <select className="custom-select" id="state"
+                  onChange={handleChange}>
+            <option value="">State...</option>
+            <option>California</option>
+          </select>
+        </Col>
+        <Col md={4} className="mb-3">
+          <label htmlFor="firstName">Zip</label>
+          <input type="text" className="form-control" id="zip"
+                 onChange={handleChange}
+                 placeholder=""
+                 value={state.zip}/>
+        </Col>
+      </Row>
+      <hr className="mb-4" />
     </form>
   );
 }
@@ -50,7 +84,11 @@ function FormPage() {
     firstName: '',
     lastName: '',
     email: '',
-    address: ''
+    address: '',
+    address2: '',
+    country: '',
+    state: '',
+    zip: ''
   });
 
   function handleChange(e) {
