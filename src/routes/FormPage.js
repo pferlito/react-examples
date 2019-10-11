@@ -15,7 +15,27 @@ function TextField({id,label,state,handleChange}) {
   );
 }
 
+function CustomSelect({id,label,state,handleChange,options}) {
+  return (
+    <Fragment>
+      <label htmlFor={id}>{label}</label>
+      <select className="custom-select" id={id}
+              onChange={handleChange}>
+        <option value="">{label}...</option>
+        {options.map(({code,label}) => {
+          return (
+            <option key={code} value={code}>{label}</option>
+          )})}
+      </select>
+    </Fragment>
+  );
+}
+
 function BillingForm({state,handleChange}) {
+  const countries = [{
+    code: 'US',
+    label: 'United States'
+  }];
   return (
     <form>
       <Row>
@@ -68,12 +88,13 @@ function BillingForm({state,handleChange}) {
       </Row>
       <Row>
         <Col md={4} className="mb-3">
-          <label htmlFor="country">Country</label>
-          <select className="custom-select" id="country"
-                  onChange={handleChange}>
-            <option value="">Country...</option>
-            <option>United States</option>
-          </select>
+          <CustomSelect
+            id="countries"
+            label="Countries"
+            state={state}
+            handleChange={handleChange}
+            options={countries}
+            />
         </Col>
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
