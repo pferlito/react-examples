@@ -10,7 +10,8 @@ function TextField({id,label,state,handleChange}) {
       <input type="text" className="form-control" id={id}
              onChange={handleChange}
              placeholder=""
-             value={state.firstName}/>
+             value={state[{id}]}
+             />
     </Fragment>
   );
 }
@@ -31,13 +32,27 @@ function CustomSelect({id,label,state,handleChange,options}) {
   );
 }
 
+function Checkbox({id, label, state, handleChange}) {
+  return (
+    <div className="custom-control custom-checkbox">
+      <input onChange={ handleChange }
+         type="checkbox"
+         className="custom-control-input"
+         id={id}
+         value={state[{id}]}
+         />
+        <label className="custom-control-label" htmlFor={id}>{label}</label>
+    </div>
+  );
+}
+
 function BillingForm({state,handleChange}) {
   const countries = [{
     code: 'US',
     label: 'United States'
   }];
   return (
-    <form>
+    <Fragment>
       <Row>
         <Col md={6} className="mb-3">
           <TextField
@@ -113,8 +128,7 @@ function BillingForm({state,handleChange}) {
           />
         </Col>
       </Row>
-      <hr className="mb-4" />
-    </form>
+    </Fragment>
   );
 }
 
@@ -127,11 +141,16 @@ function FormPage() {
     address2: '',
     country: '',
     state: '',
-    zip: ''
+    zip: '',
+    sameAsBilling: false
   });
 
   function handleChange(e) {
     setState({...state, [e.target.id]: e.target.value});
+  }
+
+  function toggleValue(e) {
+    setState({...state, [e.target.id]: !state[e.target.id]});
   }
 
   return (
@@ -139,10 +158,24 @@ function FormPage() {
       <Row>
         <Col md={{span: 8, order: 1}}>
           <h4 className="mb-3">Billing Address</h4>
-          <BillingForm
-            state={state}
-            handleChange={handleChange}
-          />
+          <form>
+            <BillingForm
+              state={state}
+              handleChange={handleChange}
+            />
+            <Checkbox
+              id="sameAsBilling"
+              label="Shipping same as Billing"
+              state={state}
+              handleChange={toggleValue}
+            />
+            <hr className="mb-4" />
+            <h4 className="mb-3">Shipping Address</h4>
+            <BillingForm
+              state={state}
+              handleChange={handleChange}
+            />
+          </form>
         </Col>
       </Row>
       <Row>
