@@ -56,7 +56,7 @@ function BillingForm({state,handleChange}) {
       <Row>
         <Col md={6} className="mb-3">
           <TextField
-            id="firstName"
+            id="billFirstName"
             label="First name"
             state={state}
             handleChange={handleChange}
@@ -64,7 +64,7 @@ function BillingForm({state,handleChange}) {
         </Col>
         <Col md={6} className="mb-3">
           <TextField
-            id="lastName"
+            id="billLastName"
             label="Last name"
             state={state}
             handleChange={handleChange}
@@ -84,7 +84,7 @@ function BillingForm({state,handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="address"
+            id="billAddress"
             label="Address"
             state={state}
             handleChange={handleChange}
@@ -94,7 +94,7 @@ function BillingForm({state,handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="address2"
+            id="billAddress2"
             label="Address 2 (optional)"
             state={state}
             handleChange={handleChange}
@@ -104,8 +104,8 @@ function BillingForm({state,handleChange}) {
       <Row>
         <Col md={4} className="mb-3">
           <CustomSelect
-            id="countries"
-            label="Countries"
+            id="billCountry"
+            label="Country"
             state={state}
             handleChange={handleChange}
             options={countries}
@@ -121,7 +121,7 @@ function BillingForm({state,handleChange}) {
         </Col>
         <Col md={4} className="mb-3">
           <TextField
-            id="zip"
+            id="billZip"
             label="Zip"
             state={state}
             handleChange={handleChange}
@@ -132,17 +132,103 @@ function BillingForm({state,handleChange}) {
   );
 }
 
+function ShippingForm({state,handleChange}) {
+  const countries = [{
+    code: 'US',
+    label: 'United States'
+  }];
+  return (
+    <Fragment>
+      <h4 className="mb-3">Shipping Address</h4>
+      <Row>
+        <Col md={6} className="mb-3">
+          <TextField
+            id="shipFirstName"
+            label="First name"
+            state={state}
+            handleChange={handleChange}
+          />
+        </Col>
+        <Col md={6} className="mb-3">
+          <TextField
+            id="shipLastName"
+            label="Last name"
+            state={state}
+            handleChange={handleChange}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mb-3">
+          <TextField
+            id="shipAddress"
+            label="Address"
+            state={state}
+            handleChange={handleChange}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mb-3">
+          <TextField
+            id="shipAddress2"
+            label="Address 2 (optional)"
+            state={state}
+            handleChange={handleChange}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col md={4} className="mb-3">
+          <CustomSelect
+            id="shipCountry"
+            label="Country"
+            state={state}
+            handleChange={handleChange}
+            options={countries}
+          />
+        </Col>
+        <Col md={4} className="mb-3">
+          <label htmlFor="state">State</label>
+          <select className="custom-select"
+                  id="shipState"
+                  onChange={handleChange}>
+            <option value="">State...</option>
+            <option>California</option>
+          </select>
+        </Col>
+        <Col md={4} className="mb-3">
+          <TextField
+            id="shipZip"
+            label="Zip"
+            state={state}
+            handleChange={handleChange}
+          />
+        </Col>
+      </Row>
+    </Fragment>
+  );
+}
+
+
 function FormPage() {
   const [state, setState] = useState({
-    firstName: '',
-    lastName: '',
+    billFirstName: '',
+    billLastName: '',
     email: '',
-    address: '',
-    address2: '',
-    country: '',
-    state: '',
-    zip: '',
-    sameAsBilling: false
+    billAddress: '',
+    billAddress2: '',
+    billCountry: '',
+    billState: '',
+    billZip: '',
+    sameAsBilling: false,
+    shipFirstName: '',
+    shipLastName: '',
+    shipAddress: '',
+    shipAddress2: '',
+    shipCountry: '',
+    shipState: '',
+    shipZip: '',
   });
 
   function handleChange(e) {
@@ -154,36 +240,35 @@ function FormPage() {
   }
 
   return (
-    <Container>
-      <Row>
-        <Col md={{span: 8, order: 1}}>
-          <h4 className="mb-3">Billing Address</h4>
-          <form>
-            <BillingForm
-              state={state}
-              handleChange={handleChange}
-            />
-            <Checkbox
-              id="sameAsBilling"
-              label="Shipping same as Billing"
-              state={state}
-              handleChange={toggleValue}
-            />
-            <hr className="mb-4" />
-            <h4 className="mb-3">Shipping Address</h4>
-            <BillingForm
-              state={state}
-              handleChange={handleChange}
-            />
-          </form>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {JSON.stringify(state)}
-        </Col>
-      </Row>
-    </Container>
+    <Fragment>
+      <Container>
+        <Row>
+          <Col md={{span: 8, order: 1}}>
+            <h4 className="mb-3">Billing Address</h4>
+            <form>
+              <BillingForm
+                state={state}
+                handleChange={handleChange}
+              />
+              <Checkbox
+                id="sameAsBilling"
+                label="Shipping same as Billing"
+                state={state}
+                handleChange={toggleValue}
+              />
+              <hr className="mb-4"/>
+              {!state.sameAsBilling && <ShippingForm
+                state={state}
+                handleChange={handleChange}
+              />}
+            </form>
+          </Col>
+          <Col md={{span: 4, order: 2}}>
+            <p>{JSON.stringify(state, null, 2)}</p>
+          </Col>
+        </Row>
+      </Container>
+    </Fragment>
   );
 }
 
