@@ -2,50 +2,9 @@ import React, {useState, Fragment} from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-
-function TextField({id, label, state, handleChange}) {
-  return (
-    <Fragment>
-      <label htmlFor={id}>{label}</label>
-      <input type="text" className="form-control" id={id}
-             onChange={handleChange}
-             placeholder=""
-             value={state[{id}]}
-      />
-    </Fragment>
-  );
-}
-
-function CustomSelect({id, label, state, handleChange, options}) {
-  return (
-    <Fragment>
-      <label htmlFor={id}>{label}</label>
-      <select className="custom-select" id={id}
-              onChange={handleChange}>
-        <option value="">{label}...</option>
-        {options.map(({code, label}) => {
-          return (
-            <option key={code} value={code}>{label}</option>
-          )
-        })}
-      </select>
-    </Fragment>
-  );
-}
-
-function Checkbox({id, label, state, handleChange}) {
-  return (
-    <div className="custom-control custom-checkbox">
-      <input onChange={handleChange}
-             type="checkbox"
-             className="custom-control-input"
-             id={id}
-             value={state[{id}]}
-      />
-      <label className="custom-control-label" htmlFor={id}>{label}</label>
-    </div>
-  );
-}
+import TextField from '../components/fields/TextField.js';
+import CustomSelect from '../components/fields/CustomSelect.js';
+import Checkbox from '../components/fields/Checkbox.js';
 
 function BillingForm({state, handleChange}) {
   const countries = [{
