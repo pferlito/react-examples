@@ -14,8 +14,29 @@ function LineItem({item}) {
   );
 }
 
+function PromoDisplay({promo, remove}) {
+  return (
+    <li className="list-group-item bg-light">
+      <div className="d-flex justify-content-between">
+        <div className="text-success">
+          <h6 className="my-0">Promo code</h6>
+          <small>{promo.codename}</small>
+        </div>
+        <span className="text-success">-${promo.value}</span>
+      </div>
+      <div>
+        <small><button onClick={remove}>Remove</button></small>
+      </div>
+    </li>
+  );
+}
+
 function Cart() {
-  const [cart,setCart] = useState([
+  const [promo, setPromo] = useState({
+    codename: 'EXAMPLECODE',
+    value: 5
+  });
+  const [cart, setCart] = useState([
     {
       name: 'Product 1',
       description: 'Product 1 description',
@@ -25,8 +46,13 @@ function Cart() {
       name: 'Product 2',
       description: 'Product 2 description',
       price: 22
-    },  ]);
+    },]);
   let index = 0;
+
+  function handleRemovePromo() {
+    setPromo(false);
+  }
+
   return (
     <Col md={{span: 4, order: 2}}>
       <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -34,22 +60,18 @@ function Cart() {
         <span className="">3 items</span>
       </h4>
       <ul className="list-group mb-3">
-        {cart.map((item,index) => {
+        {cart.map((item, index) => {
           return <LineItem key={index} item={item}/>
         })}
-        <li className="list-group-item d-flex justify-content-between bg-light">
-          <div className="text-success">
-            <h6 className="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
-          </div>
-          <span className="text-success">-$5</span>
-        </li>
+        {promo && <PromoDisplay
+          promo={promo}
+          remove={handleRemovePromo}
+        />}
         <li className="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
           <strong>$20</strong>
         </li>
       </ul>
-
       <form className="card p-2">
         <div className="input-group">
           <input type="text" className="form-control" placeholder="Promo code"/>
