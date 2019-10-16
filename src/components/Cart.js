@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Col from "react-bootstrap/Col";
+import {PromoDisplay} from "./Promo";
 
 function LineItem({item}) {
   return (
@@ -10,23 +11,6 @@ function LineItem({item}) {
         <small className="text-muted">{item.description}</small>
       </div>
       <span className="text-muted">${item.price}</span>
-    </li>
-  );
-}
-
-function PromoDisplay({promo, remove}) {
-  return (
-    <li className="list-group-item bg-light">
-      <div className="d-flex justify-content-between">
-        <div className="text-success">
-          <h6 className="my-0">Promo code</h6>
-          <small>{promo.codename}</small>
-        </div>
-        <span className="text-success">-${promo.value}</span>
-      </div>
-      <div>
-        <small><button onClick={remove}>Remove</button></small>
-      </div>
     </li>
   );
 }
