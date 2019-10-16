@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Col from "react-bootstrap/Col";
-import {PromoDisplay} from "./Promo";
+import {PromoDisplay,PromoForm} from "./Promo";
 
 function LineItem({item}) {
   return (
@@ -56,15 +56,7 @@ function Cart() {
           <strong>$20</strong>
         </li>
       </ul>
-      <form className="card p-2">
-        <div className="input-group">
-          <input type="text" className="form-control" placeholder="Promo code"/>
-          <div className="input-group-append">
-            <button type="submit" className="btn btn-secondary">Redeem
-            </button>
-          </div>
-        </div>
-      </form>
+      <PromoForm />
     </Col>
   );
 }
