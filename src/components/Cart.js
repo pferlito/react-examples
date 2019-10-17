@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Col from "react-bootstrap/Col";
 import {PromoDisplay, PromoForm} from "./Promo";
 
-function LineItem({item}) {
+function LineItem({idx,item,handleItemRemove}) {
   return (
     <li
       className="list-group-item lh-condensed">
@@ -14,7 +14,11 @@ function LineItem({item}) {
         <span className="text-muted">${item.price}</span>
       </div>
       <div>
-        <small><button className="link-button">Remove</button></small>
+        <small><button
+          data-idx={idx}
+          onClick={handleItemRemove}
+          className="link-button">Remove</button>
+        </small>
       </div>
     </li>
   );
@@ -38,6 +42,14 @@ function Cart() {
       price: 22
     },]);
 
+  function handleItemRemove(e) {
+    console.log('removing');
+    const index = e.target.dataset.idx;
+    const newCart = [...cart];
+    newCart.splice(index,1);
+    setCart(newCart);
+  }
+
   let total = useEffect(() => {},[cart]);
   return (
     <Col md={{span: 4, order: 2}}>
@@ -47,7 +59,12 @@ function Cart() {
       </h4>
       <ul className="list-group mb-3">
         {cart.map((item, index) => {
-          return <LineItem key={index} item={item}/>
+          return <LineItem
+            idx={index}
+            key={index}
+            item={item}
+            handleItemRemove={handleItemRemove}
+          />
         })}
         <PromoDisplay promo={promo} setPromo={setPromo}/>
         <li className="list-group-item d-flex justify-content-between">
