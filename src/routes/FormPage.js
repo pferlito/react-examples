@@ -223,7 +223,7 @@ function FormPage() {
               />}
             </form>
           </Col>
-          <Cart state={state}/>
+          <Cart/>
         </Row>
         <Row>{JSON.stringify(state, null, 2)}</Row>
       </Container>
