@@ -13,3 +13,22 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.cart-item-wrap {
+  flex-shrink: 1;
+  flex-basis: 53%;
+  flex-grow: 0;
+}
+
+.qty-select {
+  flex-basis: 2.7rem;
+  flex-grow: 0;
+  padding: 0 0.4rem;
+  font-size: 0.8rem;
+}
+
+.cart-price {
+  flex-basis: 20%;
+  flex-grow: 0;
+  text-align: right;
+}
