@@ -4,10 +4,12 @@ import React, {useState} from "react";
 function PromoDisplay({promo, setPromo}) {
 
   function handleRemovePromo() {
-    setPromo(false);
+    setPromo({value: 0});
   }
 
-  return (promo && <li className="list-group-item bg-light">
+  if (!promo.value) return null;
+
+  return (<li className="list-group-item bg-light">
     <div className="d-flex justify-content-between">
       <div className="text-success">
         <h6 className="my-0">Promo code</h6>

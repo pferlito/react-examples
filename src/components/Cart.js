@@ -2,6 +2,11 @@ import React, {useState, useEffect} from "react";
 import Col from "react-bootstrap/Col";
 import {PromoDisplay, PromoForm} from "./Promo";
 
+/**
+ * Quantity selector.
+ * @param {number} qty
+ * @param {function} handleQtyChange
+ */
 function Quantity({qty, handleQtyChange}) {
   let options = [];
   for (let i = 1; i < 10; i++) {
@@ -14,6 +19,32 @@ function Quantity({qty, handleQtyChange}) {
   );
 }
 
+/**
+ * Remove line item link.
+ * @param {number} idx
+ * @param {function} handleItemRemove
+ */
+function RemoveLineItem({idx,handleItemRemove}) {
+  return (
+    <div>
+      <small>
+        <button
+          data-idx={idx}
+          onClick={handleItemRemove}
+          className="link-button">Remove
+        </button>
+      </small>
+    </div>
+  );
+}
+
+/**
+ * Cart line item.
+ * @param {number} idx
+ * @param {Object} item
+ * @param {function} handleItemRemove
+ * @param {function} handleQtyChange
+ */
 function LineItem({idx, item, handleItemRemove, handleQtyChange}) {
   function QtyChange(e) {
     handleQtyChange(idx,e.target.value);
@@ -33,24 +64,36 @@ function LineItem({idx, item, handleItemRemove, handleQtyChange}) {
         />
         <span className="cart-price text-muted">${item.price}</span>
       </div>
-      <div>
-        <small>
-          <button
-            data-idx={idx}
-            onClick={handleItemRemove}
-            className="link-button">Remove
-          </button>
-        </small>
-      </div>
+      <RemoveLineItem idx={idx} handleItemRemove={handleItemRemove}/>
     </li>
   );
 }
 
+/**
+ * Cart total.
+ * @param cart
+ * @returns {*}
+ * @constructor
+ */
+function Total({cart,total}) {
+  return (
+    <li className="list-group-item d-flex justify-content-between">
+      <span>Total (USD)</span>
+      <strong>${total}</strong>
+    </li>
+  );
+}
+
+/**
+ * Cart.
+ */
 function Cart() {
   const [promo, setPromo] = useState({
     codename: 'EXAMPLECODE',
     value: 5
   });
+
+  const [total,setTotal] = useState(0);
 
   const [cart, setCart] = useState([
     {
@@ -66,6 +109,15 @@ function Cart() {
       price: 22
     },]);
 
+  // calculates total
+  useEffect(() => {
+    let cartTotal = cart.reduce((total,el) => {
+      total += el.qty * el.price;
+      return total;
+    },0);
+    setTotal(cartTotal - promo.value);
+  }, [cart,promo.value]);
+
   function handleItemRemove(e) {
     const index = e.target.dataset.idx;
     const newCart = [...cart];
@@ -79,8 +131,6 @@ function Cart() {
     setCart(newCart);
   }
 
-  let total = useEffect(() => {
-  }, [cart]);
   return (
     <Col md={{span: 4, order: 2}}>
       <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -98,10 +148,7 @@ function Cart() {
           />
         })}
         <PromoDisplay promo={promo} setPromo={setPromo}/>
-        <li className="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
-          <strong>$20</strong>
-        </li>
+        <Total cart={cart} total={total}/>
       </ul>
       <PromoForm promo={promo} setPromo={setPromo}/>
     </Col>
