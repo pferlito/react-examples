@@ -71,9 +71,8 @@ function LineItem({idx, item, handleItemRemove, handleQtyChange}) {
 
 /**
  * Cart total.
- * @param cart
- * @returns {*}
- * @constructor
+ * @param {Object} cart
+ * @param {number} total
  */
 function Total({cart,total}) {
   return (
@@ -118,6 +117,10 @@ function Cart() {
     setTotal(cartTotal - promo.value);
   }, [cart,promo.value]);
 
+  /**
+   * Handle removal of line item.
+   * @param {Object} e
+   */
   function handleItemRemove(e) {
     const index = e.target.dataset.idx;
     const newCart = [...cart];
@@ -125,6 +128,11 @@ function Cart() {
     setCart(newCart);
   }
 
+  /**
+   * Handle quantity change.
+   * @param {number} index
+   * @param {number} qty
+   */
   function handleQtyChange(index,qty) {
     const newCart = [...cart];
     newCart[index].qty = qty;

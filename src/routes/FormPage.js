@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import TextField from '../components/fields/TextField.js';
+import EmailField from '../components/fields/EmailField.js';
 import CustomSelect from '../components/fields/CustomSelect.js';
 import Checkbox from '../components/fields/Checkbox.js';
 import Cart from '../components/Cart.js';
@@ -34,7 +35,7 @@ function BillingForm({state, handleChange}) {
       </Row>
       <Row>
         <Col className="mb-3">
-          <TextField
+          <EmailField
             id="email"
             label="Email"
             state={state}
