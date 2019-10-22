@@ -31,7 +31,7 @@ function RemoveLineItem({idx,handleItemRemove}) {
         <button
           data-idx={idx}
           onClick={handleItemRemove}
-          className="link-button">Remove
+          className="btn btn-link">Remove
         </button>
       </small>
     </div>
@@ -140,7 +140,7 @@ function Cart() {
   }
 
   return (
-    <Col md={{span: 4, order: 2}}>
+    <Col className="cart" md={{span: 4, order: 2}}>
       <h4 className="d-flex justify-content-between align-items-center mb-3">
         <span className="text-muted">Your cart</span>
         <span className="">3 items</span>

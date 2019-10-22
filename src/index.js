@@ -14,12 +14,12 @@ const routing = (
     <Nav>
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/modal">Modal</Nav.Link>
-      <Nav.Link href="/form">Form</Nav.Link>
+      <Nav.Link href="/checkout">Checkout Form</Nav.Link>
     </Nav>
     <Switch>
       <Route exact path="/"><App /></Route>
       <Route path="/modal"><ModalPage /></Route>
-      <Route path="/form"><FormPage /></Route>
+      <Route path="/checkout"><FormPage /></Route>
     </Switch>
   </Router>
 );

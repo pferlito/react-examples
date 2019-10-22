@@ -19,7 +19,7 @@ function PromoDisplay({promo, setPromo}) {
     </div>
     <div>
       <small>
-        <button className="link-button" onClick={handleRemovePromo}>Remove</button>
+        <button className="btn btn-link" onClick={handleRemovePromo}>Remove</button>
       </small>
     </div>
   </li>);

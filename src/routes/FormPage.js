@@ -222,6 +222,7 @@ function FormPage() {
                 state={state}
                 handleChange={handleChange}
               />}
+              <button className="btn btn-secondary" type="submit">Submit</button>
             </form>
           </Col>
           <Cart/>
