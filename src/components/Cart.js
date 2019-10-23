@@ -143,7 +143,7 @@ function Cart() {
     <Col className="cart" md={{span: 4, order: 2}}>
       <h4 className="d-flex justify-content-between align-items-center mb-3">
         <span className="text-muted">Your cart</span>
-        <span className="">3 items</span>
+        <span className="text-secondary"><small>{cart.length} items</small></span>
       </h4>
       <ul className="list-group mb-3">
         {cart.map((item, index) => {
