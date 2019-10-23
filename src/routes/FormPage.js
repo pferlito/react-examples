@@ -20,7 +20,7 @@ function BillingForm({state, handleChange}) {
           <TextField
             id="billFirstName"
             label="First name"
-            state={state}
+            value={state.billFirstName}
             handleChange={handleChange}
             required="required"
           />
@@ -29,7 +29,7 @@ function BillingForm({state, handleChange}) {
           <TextField
             id="billLastName"
             label="Last name"
-            state={state}
+            value={state.billLastName}
             handleChange={handleChange}
             required="required"
           />
@@ -51,7 +51,7 @@ function BillingForm({state, handleChange}) {
           <TextField
             id="billAddress"
             label="Address"
-            state={state}
+            value={state.billAddress}
             handleChange={handleChange}
             required="required"
           />
@@ -62,7 +62,7 @@ function BillingForm({state, handleChange}) {
           <TextField
             id="billAddress2"
             label="Address 2 (optional)"
-            state={state}
+            value={state.billAddress2}
             handleChange={handleChange}
           />
         </Col>
@@ -80,7 +80,7 @@ function BillingForm({state, handleChange}) {
         </Col>
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
-          <select className="custom-select" id="state"
+          <select className="custom-select" id="billState"
                   required="required"
                   onChange={handleChange}>
             <option value="">State...</option>
@@ -114,7 +114,7 @@ function ShippingForm({state, handleChange}) {
           <TextField
             id="shipFirstName"
             label="First name"
-            state={state}
+            value={state.shipFirstName}
             handleChange={handleChange}
             required="required"
           />
@@ -123,7 +123,7 @@ function ShippingForm({state, handleChange}) {
           <TextField
             id="shipLastName"
             label="Last name"
-            state={state}
+            value={state.shipLastName}
             handleChange={handleChange}
             required="required"
           />
@@ -134,7 +134,7 @@ function ShippingForm({state, handleChange}) {
           <TextField
             id="shipAddress"
             label="Address"
-            state={state}
+            value={state.shipAddress}
             handleChange={handleChange}
             required="required"
           />
@@ -145,7 +145,7 @@ function ShippingForm({state, handleChange}) {
           <TextField
             id="shipAddress2"
             label="Address 2 (optional)"
-            state={state}
+            value={state.shipAddress2}
             handleChange={handleChange}
             required="required"
           />
@@ -177,7 +177,7 @@ function ShippingForm({state, handleChange}) {
           <TextField
             id="shipZip"
             label="Zip"
-            state={state}
+            value={state.shipZip}
             handleChange={handleChange}
             required="required"
           />

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 
-function TextField({id, label, state, handleChange,required}) {
+function TextField({id, label, value, handleChange,required}) {
   return (
     <Fragment>
       <label htmlFor={id}>{label}{required ? "*" : ""}</label>
@@ -8,7 +8,7 @@ function TextField({id, label, state, handleChange,required}) {
              onChange={handleChange}
              placeholder=""
              required={required}
-             value={state[{id}]}
+             value={value}
       />
     </Fragment>
   );
