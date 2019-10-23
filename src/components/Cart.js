@@ -110,11 +110,16 @@ function Cart() {
 
   // calculates total
   useEffect(() => {
+    let promoValue = promo.value;
     let cartTotal = cart.reduce((total,el) => {
       total += el.qty * el.price;
       return total;
     },0);
-    setTotal(cartTotal - promo.value);
+    if (!cart.length) {
+      promoValue = 0;
+      setPromo(promoValue);
+    }
+    setTotal(cartTotal - promoValue);
   }, [cart,promo.value]);
 
   /**
@@ -155,7 +160,7 @@ function Cart() {
             handleQtyChange={handleQtyChange}
           />
         })}
-        <PromoDisplay promo={promo} setPromo={setPromo}/>
+        {cart.length > 0 && <PromoDisplay promo={promo} setPromo={setPromo}/>}
         <Total cart={cart} total={total}/>
       </ul>
       <PromoForm promo={promo} setPromo={setPromo}/>
