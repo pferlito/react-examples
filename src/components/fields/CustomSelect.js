@@ -1,10 +1,11 @@
 import React, {Fragment} from "react";
 
-function CustomSelect({id, label, handleChange, options}) {
+function CustomSelect({id, label, handleChange, options, required}) {
   return (
     <Fragment>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{label}{required ? "*" : ""}</label>
       <select className="custom-select" id={id}
+              required={required}
               onChange={handleChange}>
         <option value="">{label}...</option>
         {options.map(({code, label}) => {

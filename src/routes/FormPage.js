@@ -22,6 +22,7 @@ function BillingForm({state, handleChange}) {
             label="First name"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
         <Col md={6} className="mb-3">
@@ -30,6 +31,7 @@ function BillingForm({state, handleChange}) {
             label="Last name"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -40,6 +42,7 @@ function BillingForm({state, handleChange}) {
             label="Email"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -50,6 +53,7 @@ function BillingForm({state, handleChange}) {
             label="Address"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -71,11 +75,13 @@ function BillingForm({state, handleChange}) {
             state={state}
             handleChange={handleChange}
             options={countries}
+            required="required"
           />
         </Col>
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
           <select className="custom-select" id="state"
+                  required="required"
                   onChange={handleChange}>
             <option value="">State...</option>
             <option>California</option>
@@ -87,6 +93,7 @@ function BillingForm({state, handleChange}) {
             label="Zip"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -109,6 +116,7 @@ function ShippingForm({state, handleChange}) {
             label="First name"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
         <Col md={6} className="mb-3">
@@ -117,6 +125,7 @@ function ShippingForm({state, handleChange}) {
             label="Last name"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -127,6 +136,7 @@ function ShippingForm({state, handleChange}) {
             label="Address"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -137,6 +147,7 @@ function ShippingForm({state, handleChange}) {
             label="Address 2 (optional)"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -148,13 +159,16 @@ function ShippingForm({state, handleChange}) {
             state={state}
             handleChange={handleChange}
             options={countries}
+            required="required"
           />
         </Col>
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
           <select className="custom-select"
                   id="shipState"
+                  required="required"
                   onChange={handleChange}>
+
             <option value="">State...</option>
             <option>California</option>
           </select>
@@ -165,6 +179,7 @@ function ShippingForm({state, handleChange}) {
             label="Zip"
             state={state}
             handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
