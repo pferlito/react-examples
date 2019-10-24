@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -7,6 +7,7 @@ import EmailField from '../components/fields/EmailField.js';
 import CustomSelect from '../components/fields/CustomSelect.js';
 import Checkbox from '../components/fields/Checkbox.js';
 import Cart from '../components/Cart.js';
+import zipcodes from 'zipcodes';
 
 function BillingForm({state, handleChange}) {
   const countries = [{
@@ -49,9 +50,9 @@ function BillingForm({state, handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="billAddress"
-            label="Address"
-            value={state.billAddress}
+            id="billStreet"
+            label="Street"
+            value={state.billStreet}
             handleChange={handleChange}
             required="required"
           />
@@ -60,10 +61,19 @@ function BillingForm({state, handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="billAddress2"
-            label="Address 2 (optional)"
-            value={state.billAddress2}
+            id="billStreet2"
+            label="Street 2 (optional)"
+            value={state.billStreet2}
             handleChange={handleChange}
+          />
+        </Col>
+        <Col className="mb-3">
+          <TextField
+            id="billCity"
+            label="City"
+            value={state.billCity}
+            handleChange={handleChange}
+            required="required"
           />
         </Col>
       </Row>
@@ -132,9 +142,9 @@ function ShippingForm({state, handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="shipAddress"
-            label="Address"
-            value={state.shipAddress}
+            id="shipStreet"
+            label="Street"
+            value={state.shipStreet}
             handleChange={handleChange}
             required="required"
           />
@@ -143,9 +153,18 @@ function ShippingForm({state, handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="shipAddress2"
-            label="Address 2 (optional)"
-            value={state.shipAddress2}
+            id="shipStreet2"
+            label="Street 2 (optional)"
+            value={state.shipStreet2}
+            handleChange={handleChange}
+            required="required"
+          />
+        </Col>
+        <Col className="mb-3">
+          <TextField
+            id="shipCity"
+            label="City"
+            value={state.shipCity}
             handleChange={handleChange}
             required="required"
           />
@@ -192,20 +211,32 @@ function FormPage() {
     billFirstName: '',
     billLastName: '',
     email: '',
-    billAddress: '',
-    billAddress2: '',
+    billStreet: '',
+    billStreet2: '',
+    billCity: '',
     billCountry: '',
     billState: '',
     billZip: '',
     sameAsBilling: false,
     shipFirstName: '',
     shipLastName: '',
-    shipAddress: '',
-    shipAddress2: '',
+    shipStreet: '',
+    shipStreet2: '',
+    shipCity: '',
     shipCountry: '',
     shipState: '',
     shipZip: '',
   });
+
+  // look up city from zip
+  useEffect(() => {
+    let info = zipcodes.lookup(state.billZip);
+    if (info) {
+      console.log(info.city);
+      setState({...setState, billCity: info.city});
+    }
+
+  },[state.billZip]);
 
   function handleChange(e) {
     setState({...state, [e.target.id]: e.target.value});
