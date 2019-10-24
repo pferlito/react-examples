@@ -233,7 +233,7 @@ function FormPage() {
     let info = zipcodes.lookup(state.billZip);
     if (info) {
       console.log(info.city);
-      setState({...setState, billCity: info.city});
+      setState({...state, billCity: info.city});
     }
 
   },[state.billZip]);
