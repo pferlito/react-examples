@@ -232,7 +232,6 @@ function FormPage() {
   useEffect(() => {
     let info = zipcodes.lookup(state.billZip);
     if (info) {
-      console.log(info.city);
       setState({...state, billCity: info.city});
     }
 
@@ -273,7 +272,6 @@ function FormPage() {
           </Col>
           <Cart/>
         </Row>
-        <Row>{JSON.stringify(state, null, 2)}</Row>
       </Container>
     </Fragment>
   );
