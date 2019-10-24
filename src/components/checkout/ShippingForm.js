@@ -74,11 +74,11 @@ export default function ShippingForm({state, handleChange, states, countries}) {
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
           <CustomSelect
-              id="shipState"
-              value={state.shipState}
-              required="required"
-              options={states}
-              onChange={handleChange}>
+            id="shipState"
+            value={state.shipState}
+            required="required"
+            options={states}
+            handleChange={handleChange}>
           </CustomSelect>
         </Col>
         <Col md={4} className="mb-3">

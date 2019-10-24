@@ -10,7 +10,8 @@ function App() {
       <Row>
         <Col>
           <div className="Home">
-            <h2 className="text-center">React Examples</h2>
+            <h2 className="text-center">A few React projects...</h2>
+            <p>Here are a few react projects I've done on my way to learning React</p>
             <dl>
               <dt><a href="/modal">Modal</a></dt>
               <dd>A Modal implementation using a Portal.</dd>

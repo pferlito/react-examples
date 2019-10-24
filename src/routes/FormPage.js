@@ -73,7 +73,7 @@ function FormPage() {
               <Checkbox
                 id="sameAsBilling"
                 label="Shipping same as Billing"
-                state={state}
+                value={state.sameAsBilling}
                 handleChange={toggleValue}
               />
               <hr className="mb-4"/>

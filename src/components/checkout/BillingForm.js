@@ -7,7 +7,6 @@ import CustomSelect from "./fields/CustomSelect";
 import PropTypes from "prop-types";
 
 export default function BillingForm({state, handleChange, states, countries}) {
-
   return (
     <Fragment>
       <Row>
@@ -85,11 +84,11 @@ export default function BillingForm({state, handleChange, states, countries}) {
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
           <CustomSelect
-            id="shipState"
-            value={state.shipState}
+            id="billState"
+            value={state.billState}
             required="required"
             options={states}
-            onChange={handleChange}>
+            handleChange={handleChange}>
           </CustomSelect>
         </Col>
         <Col md={4} className="mb-3">
