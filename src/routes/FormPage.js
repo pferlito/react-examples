@@ -9,6 +9,16 @@ import ShippingForm from '../components/checkout/ShippingForm';
 import zipcodes from 'zipcodes';
 
 function FormPage() {
+  const countries = [{
+    code: 'US',
+    label: 'United States'
+  }];
+
+  const states = [{
+    code: 'CA',
+    label: 'California'
+  }];
+
   const [state, setState] = useState({
     billFirstName: '',
     billLastName: '',
@@ -57,6 +67,8 @@ function FormPage() {
               <BillingForm
                 state={state}
                 handleChange={handleChange}
+                states={states}
+                countries={countries}
               />
               <Checkbox
                 id="sameAsBilling"
@@ -68,6 +80,8 @@ function FormPage() {
               {!state.sameAsBilling && <ShippingForm
                 state={state}
                 handleChange={handleChange}
+                states={states}
+                countries={countries}
               />}
               <button className="btn btn-secondary" type="submit">Submit</button>
             </form>

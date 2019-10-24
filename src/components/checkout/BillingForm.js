@@ -6,11 +6,8 @@ import EmailField from "./fields/EmailField";
 import CustomSelect from "./fields/CustomSelect";
 import PropTypes from "prop-types";
 
-export default function BillingForm({state, handleChange}) {
-  const countries = [{
-    code: 'US',
-    label: 'United States'
-  }];
+export default function BillingForm({state, handleChange, states, countries}) {
+
   return (
     <Fragment>
       <Row>
@@ -79,7 +76,7 @@ export default function BillingForm({state, handleChange}) {
           <CustomSelect
             id="billCountry"
             label="Country"
-            state={state}
+            value={state.billCountry}
             handleChange={handleChange}
             options={countries}
             required="required"
@@ -87,12 +84,13 @@ export default function BillingForm({state, handleChange}) {
         </Col>
         <Col md={4} className="mb-3">
           <label htmlFor="state">State</label>
-          <select className="custom-select" id="billState"
-                  required="required"
-                  onChange={handleChange}>
-            <option value="">State...</option>
-            <option>California</option>
-          </select>
+          <CustomSelect
+            id="shipState"
+            value={state.shipState}
+            required="required"
+            options={states}
+            onChange={handleChange}>
+          </CustomSelect>
         </Col>
         <Col md={4} className="mb-3">
           <TextField

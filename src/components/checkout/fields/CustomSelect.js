@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 
-function CustomSelect({id, label, handleChange, options, required}) {
+function CustomSelect({id, label, value, handleChange, options, required}) {
   return (
     <Fragment>
       <label htmlFor={id}>{label}{required ? "*" : ""}</label>
