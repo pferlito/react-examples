@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import PropTypes from "prop-types";
 
 function CustomSelect({id, label, value, handleChange, options, required}) {
   return (
@@ -14,5 +15,14 @@ function CustomSelect({id, label, value, handleChange, options, required}) {
     </Fragment>
   );
 }
+
+CustomSelect.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  required: PropTypes.string
+};
 
 export default CustomSelect;

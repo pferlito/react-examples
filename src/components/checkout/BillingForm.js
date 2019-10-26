@@ -34,7 +34,7 @@ export default function BillingForm({state, handleChange, states, countries}) {
           <EmailField
             id="email"
             label="Email"
-            state={state}
+            value={state.email}
             handleChange={handleChange}
             required="required"
           />
@@ -82,9 +82,9 @@ export default function BillingForm({state, handleChange, states, countries}) {
           />
         </Col>
         <Col md={4} className="mb-3">
-          <label htmlFor="state">State</label>
           <CustomSelect
             id="billState"
+            label="State"
             value={state.billState}
             required="required"
             options={states}

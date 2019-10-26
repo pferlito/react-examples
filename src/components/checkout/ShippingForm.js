@@ -72,9 +72,9 @@ export default function ShippingForm({state, handleChange, states, countries}) {
           />
         </Col>
         <Col md={4} className="mb-3">
-          <label htmlFor="state">State</label>
           <CustomSelect
             id="shipState"
+            label="State"
             value={state.shipState}
             required="required"
             options={states}

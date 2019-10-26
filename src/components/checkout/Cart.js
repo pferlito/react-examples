@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Col from "react-bootstrap/Col";
 import {PromoDisplay, PromoForm} from "./Promo";
+import PropTypes from "prop-types";
 
 /**
  * Quantity selector.
@@ -18,6 +19,11 @@ function Quantity({qty, handleQtyChange}) {
     </select>
   );
 }
+
+Quantity.propTypes = {
+  qty: PropTypes.number.isRequired,
+  handleQtyChange: PropTypes.func.isRequired,
+};
 
 /**
  * Remove line item link.
@@ -37,6 +43,11 @@ function RemoveLineItem({idx,handleItemRemove}) {
     </div>
   );
 }
+
+RemoveLineItem.propTypes = {
+  idx: PropTypes.number.isRequired,
+  handleItemRemove: PropTypes.func.isRequired,
+};
 
 /**
  * Cart line item.
