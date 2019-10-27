@@ -80,6 +80,13 @@ function LineItem({idx, item, handleItemRemove, handleQtyChange}) {
   );
 }
 
+LineItem.propTypes = {
+  idx: PropTypes.number.isRequired,
+  item: PropTypes.object.isRequired,
+  handleItemRemove: PropTypes.func.isRequired,
+  handleQtyChange: PropTypes.func.isRequired,
+};
+
 /**
  * Cart total.
  * @param {Object} cart
@@ -93,6 +100,11 @@ function Total({cart,total}) {
     </li>
   );
 }
+
+Total.propTypes = {
+  cart: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
+};
 
 /**
  * Cart.
