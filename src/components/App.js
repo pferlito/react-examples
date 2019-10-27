@@ -17,6 +17,8 @@ function App() {
               <dd>A Modal implementation using a Portal.</dd>
               <dt><a href="/checkout">Checkout Form</a></dt>
               <dd>A Checkout Form for an ecommerce site.</dd>
+              <dt><a href="/multistep">Multistep Form</a></dt>
+              <dd>A Multistep survey form.</dd>
             </dl>
           </div>
         </Col>
