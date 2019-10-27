@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 
 function PromoDisplay({promo, setPromo}) {
@@ -25,7 +26,13 @@ function PromoDisplay({promo, setPromo}) {
   </li>);
 }
 
-function PromoForm({promo, setPromo}) {
+PromoDisplay.propTypes = {
+  promo: PropTypes.object.isRequired,
+  setPromo: PropTypes.func.isRequired,
+};
+
+function PromoForm({setPromo}) {
+
   function handleSubmit(e) {
     e.preventDefault();
     setPromo({
@@ -46,5 +53,9 @@ function PromoForm({promo, setPromo}) {
     </form>
   );
 }
+
+PromoForm.propTypes = {
+  setPromo: PropTypes.func.isRequired,
+};
 
 export {PromoDisplay, PromoForm};

@@ -97,5 +97,7 @@ export default function ShippingForm({state, handleChange, states, countries}) {
 
 ShippingForm.propTypes = {
   state: PropTypes.object.isRequired,
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  states: PropTypes.array.isRequired,
+  countries: PropTypes.array.isRequired,
 };

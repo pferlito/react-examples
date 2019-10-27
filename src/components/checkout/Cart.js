@@ -186,7 +186,7 @@ function Cart() {
         {cart.length > 0 && <PromoDisplay promo={promo} setPromo={setPromo}/>}
         <Total cart={cart} total={total}/>
       </ul>
-      <PromoForm promo={promo} setPromo={setPromo}/>
+      <PromoForm setPromo={setPromo}/>
     </Col>
   );
 }
