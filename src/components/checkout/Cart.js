@@ -89,7 +89,7 @@ LineItem.propTypes = {
 
 /**
  * Cart total.
- * @param {Object} cart
+ * @param {Array} cart
  * @param {number} total
  */
 function Total({cart,total}) {
@@ -102,7 +102,7 @@ function Total({cart,total}) {
 }
 
 Total.propTypes = {
-  cart: PropTypes.object.isRequired,
+  cart: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
 };
 
