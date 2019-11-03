@@ -40,7 +40,7 @@ function MultistepPage({steps}) {
           <StepNav handleNavigation={handleNavigation}
                    state={state}
                    steps={steps}/>
-        {JSON.stringify(state,2)}
+        <pre>{JSON.stringify(state,null,2)}</pre>
       </Container>
     </Fragment>
   );
