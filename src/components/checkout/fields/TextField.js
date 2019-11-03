@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 
-function TextField({id, label, value, handleChange,required}) {
+function TextField({id, label, value, handleChange, required}) {
   return (
     <Fragment>
       <label htmlFor={id}>{label}{required ? "*" : ""}</label>
