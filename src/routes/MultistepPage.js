@@ -13,7 +13,7 @@ function MultistepPage({steps}) {
     lastName: "",
   };
 
-  const [state,setState] = useState(initState);
+  const [state, setState] = useState(initState);
 
   /**
    * Handle text field change.
@@ -36,11 +36,11 @@ function MultistepPage({steps}) {
       <Container>
         {state.step === 0 ?
           <Step0 handleChange={handleChange}
-                  state={state}/> : null}
-          <StepNav handleNavigation={handleNavigation}
-                   state={state}
-                   steps={steps}/>
-        <pre>{JSON.stringify(state,null,2)}</pre>
+                 state={state}/> : null}
+        <StepNav handleNavigation={handleNavigation}
+                 state={state}
+                 steps={steps}/>
+        <pre>{JSON.stringify(state, null, 2)}</pre>
       </Container>
     </Fragment>
   );

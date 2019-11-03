@@ -2,7 +2,7 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default function StepNav({handleNavigation,state,steps}) {
+export default function StepNav({handleNavigation, state, steps}) {
   return (
     <Row>
       <Col md={{span: 8}}>
