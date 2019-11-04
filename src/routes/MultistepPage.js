@@ -1,18 +1,9 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, useRef, Fragment} from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Step0 from "../components/multistep/Step0";
+import Steps from "../components/multistep/Steps";
 import StepNav from "../components/multistep/StepNav";
-
-
-function Steps({step,...props}) {
-  const mySteps = [
-    Step0
-  ];
-  const MyTag = mySteps[step];
-  return <MyTag {...props} />;
-}
 
 
 function MultistepPage({steps}) {
@@ -22,6 +13,8 @@ function MultistepPage({steps}) {
     firstName: "",
     lastName: "",
   };
+
+  const form = useRef(null);
 
   const [state, setState] = useState(initState);
 
@@ -38,19 +31,30 @@ function MultistepPage({steps}) {
    * @param dir
    */
   function handleNavigation(dir) {
-    setState({...state, step: state.step + dir});
+    let valid = form.current.reportValidity();
+    valid && setState({...state, step: state.step + dir});
+  }
+
+  /**
+   * Handle form submission.
+   * @param e
+   */
+  function handleSubmit(e) {
+    e.preventDefault();
   }
 
   return (
     <Fragment>
       <Container>
-        {state.step === 0 ?
-          <Steps step={state.step} handleChange={handleChange}
-                 state={state}/> : null}
-        <StepNav handleNavigation={handleNavigation}
-                 state={state}
-                 steps={steps}/>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
+        <form onSubmit={handleSubmit} ref={form}>
+          {state.step === 0 ?
+            <Steps step={state.step} handleChange={handleChange}
+                   state={state}/> : null}
+          <StepNav handleNavigation={handleNavigation}
+                   state={state}
+                   steps={steps}/>
+          <pre>{JSON.stringify(state, null, 2)}</pre>
+        </form>
       </Container>
     </Fragment>
   );
