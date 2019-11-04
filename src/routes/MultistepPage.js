@@ -5,6 +5,16 @@ import Container from "react-bootstrap/Container";
 import Step0 from "../components/multistep/Step0";
 import StepNav from "../components/multistep/StepNav";
 
+
+function Steps({step,...props}) {
+  const mySteps = [
+    Step0
+  ];
+  const MyTag = mySteps[step];
+  return <MyTag {...props} />;
+}
+
+
 function MultistepPage({steps}) {
 
   const initState = {
@@ -35,7 +45,7 @@ function MultistepPage({steps}) {
     <Fragment>
       <Container>
         {state.step === 0 ?
-          <Step0 handleChange={handleChange}
+          <Steps step={state.step} handleChange={handleChange}
                  state={state}/> : null}
         <StepNav handleNavigation={handleNavigation}
                  state={state}
