@@ -22,7 +22,7 @@ const routing = (
       <Route exact path="/"><App /></Route>
       <Route path="/modal"><ModalPage /></Route>
       <Route path="/checkout"><FormPage /></Route>
-      <Route path="/multistep"><MultistepPage steps={3}/></Route>
+      <Route path="/multistep"><MultistepPage steps={2}/></Route>
     </Switch>
   </Router>
 );

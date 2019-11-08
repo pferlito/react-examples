@@ -12,6 +12,8 @@ function MultistepPage({steps}) {
     step: 0,
     firstName: "",
     lastName: "",
+    email: "",
+    phone: ""
   };
 
   const form = useRef(null);
@@ -47,9 +49,8 @@ function MultistepPage({steps}) {
     <Fragment>
       <Container>
         <form onSubmit={handleSubmit} ref={form}>
-          {state.step === 0 ?
             <Steps step={state.step} handleChange={handleChange}
-                   state={state}/> : null}
+                   state={state}/>
           <StepNav handleNavigation={handleNavigation}
                    state={state}
                    steps={steps}/>
