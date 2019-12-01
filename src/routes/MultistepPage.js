@@ -13,7 +13,8 @@ function MultistepPage({steps}) {
     firstName: "",
     lastName: "",
     email: "",
-    phone: ""
+    phone: "",
+    age: {}
   };
 
   const form = useRef(null);
