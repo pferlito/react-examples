@@ -19,6 +19,8 @@ function App() {
               <dd>A Checkout Form for an ecommerce site.</dd>
               <dt><a href="/multistep">Multistep Form</a></dt>
               <dd>A Multistep survey form.</dd>
+              <dt><a href="/directory">Directory</a></dt>
+              <dd>A searchable directory.</dd>
             </dl>
           </div>
         </Col>

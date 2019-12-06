@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect} from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -58,38 +58,36 @@ function FormPage() {
   }
 
   return (
-    <Fragment>
-      <Container>
-        <Row>
-          <Col md={{span: 8, order: 1}}>
-            <h4 className="mb-3">Billing Address</h4>
-            <form>
-              <BillingForm
-                state={state}
-                handleChange={handleChange}
-                states={states}
-                countries={countries}
-              />
-              <Checkbox
-                id="sameAsBilling"
-                label="Shipping same as Billing"
-                value={state.sameAsBilling}
-                handleChange={toggleValue}
-              />
-              <hr className="mb-4"/>
-              {!state.sameAsBilling && <ShippingForm
-                state={state}
-                handleChange={handleChange}
-                states={states}
-                countries={countries}
-              />}
-              <button className="btn btn-secondary" type="submit">Submit</button>
-            </form>
-          </Col>
-          <Cart/>
-        </Row>
-      </Container>
-    </Fragment>
+    <Container>
+      <Row>
+        <Col md={{span: 8, order: 1}}>
+          <h4 className="mb-3">Billing Address</h4>
+          <form>
+            <BillingForm
+              state={state}
+              handleChange={handleChange}
+              states={states}
+              countries={countries}
+            />
+            <Checkbox
+              id="sameAsBilling"
+              label="Shipping same as Billing"
+              value={state.sameAsBilling}
+              handleChange={toggleValue}
+            />
+            <hr className="mb-4"/>
+            {!state.sameAsBilling && <ShippingForm
+              state={state}
+              handleChange={handleChange}
+              states={states}
+              countries={countries}
+            />}
+            <button className="btn btn-secondary" type="submit">Submit</button>
+          </form>
+        </Col>
+        <Cart/>
+      </Row>
+    </Container>
   );
 }
 
