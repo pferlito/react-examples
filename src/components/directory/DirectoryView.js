@@ -1,35 +1,31 @@
 import React from 'react';
 import Table from "react-bootstrap/Table";
 
-function DirectoryView() {
+function DirectoryView({users}) {
+  console.log(users);
   return (
     <Table striped bordered hover>
       <thead>
       <tr>
-        <th>#</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Username</th>
+        <th>Email</th>
+        <th>Photo</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>1</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td colSpan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
+
+      {users.map((user) => {
+        return (<tr key={user.login.username}>
+          <td>{user.name.first}</td>
+          <td>{user.name.last}</td>
+          <td>{user.login.username}</td>
+          <td>{user.email}</td>
+          <td><img src={user.picture.thumbnail} /></td>
+        </tr>)
+      })}
+
       </tbody>
     </Table>
   )

@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import DirectoryView from "../components/directory/DirectoryView";
 
 function DirectoryPage() {
-  let [users,setUsers] = useState({});
+  let [users,setUsers] = useState([]);
 
   function handleChange() {
     console.log('in handleChange');
@@ -14,10 +14,10 @@ function DirectoryPage() {
 
   useEffect( ()=>{
     async function getData() {
-      let response = await fetch('https://randomuser.me/api/?results=50');
+      let response = await fetch('https://randomuser.me/api/?results=50&inc=name,login,email,picture');
+      //let response = await fetch('https://randomuser.me/api/?results=50');
       let data = await response.json();
       data = data.results;
-      console.log(data);
       setUsers(data);
     }
     getData();
@@ -36,7 +36,7 @@ function DirectoryPage() {
       </Row>
       <Row>
         <Col md={{span: 8}}>
-          <DirectoryView />
+          <DirectoryView users={users}/>
         </Col>
       </Row>
     </Container>
