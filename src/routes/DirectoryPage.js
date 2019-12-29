@@ -4,9 +4,12 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
-import {filterUsers, DirectoryView} from "../components/directory/DirectoryView";
+import {
+  filterUsers,
+  DirectoryView
+} from "../components/directory/DirectoryView";
 
-function paginate (array, page_size, page_number) {
+function paginate(array, page_size, page_number) {
   --page_number; // because pages logically start with 1, but technically with 0
   return array.slice(page_number * page_size, (page_number + 1) * page_size);
 }
@@ -17,12 +20,12 @@ function paginate (array, page_size, page_number) {
 function DirectoryPage() {
   let [users, setUsers] = useState([]);
   let [search, setSearch] = useState("");
-  let [currentPage, setCurrentPage] = useState (1);
+  let [currentPage, setCurrentPage] = useState(1);
 
   function handleSearch(e) {
     setSearch(e.target.value);
   }
-  
+
   function handlePageChange(e) {
     let newPage = parseInt(e.target.getAttribute('page'));
     console.log(newPage);
@@ -44,7 +47,14 @@ function DirectoryPage() {
 
   const usersPerPage = 5;
   let filteredUsers = filterUsers(users, search);
-  let paginatedUsers = paginate (filteredUsers, usersPerPage, currentPage);
+  let paginatedUsers = paginate(filteredUsers, usersPerPage, currentPage);
+  let pageCount = Math.ceil(filteredUsers.length / usersPerPage);
+
+  let items = [];
+  for (let i = 1; i <= pageCount; i++) {
+    items.push(<Pagination.Item page={i} onClick={handlePageChange} key={i}
+                                active={currentPage === i}>{i}</Pagination.Item>)
+  }
 
   return (
     <Container>
@@ -66,9 +76,7 @@ function DirectoryPage() {
       <Row className="justify-content-md-center">
         <Col md={{span: 3}}>
           <Pagination>
-            <Pagination.Item page={1} onClick={handlePageChange} key={1} active={currentPage === 1}>1</Pagination.Item>
-            <Pagination.Item page={2} onClick={handlePageChange} key={2} active={currentPage === 2}>2</Pagination.Item>
-            <Pagination.Item page={3} onClick={handlePageChange} key={3} active={currentPage === 3}>3</Pagination.Item>
+            {items}
           </Pagination>
         </Col>
       </Row>
