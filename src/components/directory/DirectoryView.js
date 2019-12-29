@@ -1,14 +1,8 @@
 import React from 'react';
 import Table from "react-bootstrap/Table";
 
-/**
- * Display a filtered view of users.
- * @param users
- * @param search
- * @returns {*}
- * @constructor
- */
-function DirectoryView({users, search}) {
+
+export function filterUsers(users, search) {
   let filteredUsers;
   if (search) {
     filteredUsers = users.filter((user) => {
@@ -21,6 +15,14 @@ function DirectoryView({users, search}) {
   } else {
     filteredUsers = users;
   }
+  return filteredUsers;
+}
+
+/**
+ * Display a view of users.
+ * @param users
+ */
+export function DirectoryView({users}) {
   return (
     <Table striped bordered hover>
       <thead>
@@ -34,7 +36,7 @@ function DirectoryView({users, search}) {
       </thead>
       <tbody>
 
-      {filteredUsers.map((user) => (
+      {users.map((user) => (
         <tr key={user.login.username}>
           <td>{user.name.first}</td>
           <td>{user.name.last}</td>
@@ -48,4 +50,3 @@ function DirectoryView({users, search}) {
   )
 }
 
-export default DirectoryView;

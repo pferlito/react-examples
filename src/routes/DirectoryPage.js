@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
-import DirectoryView from "../components/directory/DirectoryView";
+import {filterUsers, DirectoryView} from "../components/directory/DirectoryView";
 
 /**
  * Display a directory search page.
@@ -15,7 +15,7 @@ function DirectoryPage() {
   let [currentPage, setCurrentPage] = useState (1);
 
   function handleSearch(e) {
-    setSearch(e.target);
+    setSearch(e.target.value);
   }
   
   function handlePageChange(e) {
@@ -36,6 +36,8 @@ function DirectoryPage() {
     getData();
   }, []);
 
+  let filteredUsers = filterUsers(users, search);
+
   return (
     <Container>
       <Row>
@@ -50,7 +52,7 @@ function DirectoryPage() {
       </Row>
       <Row>
         <Col md={{span: 8}}>
-          <DirectoryView users={users} search={search}/>
+          <DirectoryView users={filteredUsers}/>
         </Col>
       </Row>
       <Row className="justify-content-md-center">
