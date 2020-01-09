@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 
 export function filterUsers(users, search) {
@@ -23,6 +24,10 @@ export function filterUsers(users, search) {
  * @param users
  */
 export function DirectoryView({users}) {
+  function handleEdit() {
+    console.log('edit clicked');
+  }
+
   return (
     <Table striped bordered hover>
       <thead>
@@ -32,6 +37,7 @@ export function DirectoryView({users}) {
         <th>Username</th>
         <th>Email</th>
         <th>Photo</th>
+        <th>Edit</th>
       </tr>
       </thead>
       <tbody>
@@ -43,6 +49,7 @@ export function DirectoryView({users}) {
           <td>{user.login.username}</td>
           <td>{user.email}</td>
           <td><img src={user.picture.thumbnail} alt={user.login.username}/></td>
+          <td className="edit_cell"><Button onClick={handleEdit} className="edit_btn">Edit</Button></td>
         </tr>)
       )}
       </tbody>
