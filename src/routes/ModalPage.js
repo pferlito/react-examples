@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
-import './Modal.css';
 import Button from 'react-bootstrap/Button';
 
 function MyModal({handleClick}) {
