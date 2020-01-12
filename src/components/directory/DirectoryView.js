@@ -1,11 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-
-export function EditModal({user}) {
-
-}
 
 export function filterUsers(users, search) {
   let filteredUsers;
@@ -26,15 +21,9 @@ export function filterUsers(users, search) {
 /**
  * Display a view of users.
  * @param users
+ * @param handleUserEdit
  */
-export function DirectoryView({users}) {
-  function handleEdit(e) {
-    const uid = e.target.parentElement.id;
-    const user = users.find((acct) => {
-      return acct.login.username === uid;
-    });
-    console.log(user);
-  }
+export function DirectoryView({users, handleUserEdit}) {
 
   return (
     <Table striped bordered hover>
@@ -56,8 +45,10 @@ export function DirectoryView({users}) {
           <td>{user.name.last}</td>
           <td>{user.login.username}</td>
           <td>{user.email}</td>
-          <td><img src={user.picture.thumbnail} alt={user.login.username}/></td>
-          <td id={user.login.username} className="edit_cell"><Button onClick={handleEdit} className="edit_btn">Edit</Button></td>
+          <td><img src={user.picture.thumbnail} alt={user.login.username}/>
+          </td>
+          <td id={user.login.username} className="edit_cell"><Button
+            onClick={handleUserEdit} className="edit_btn">Edit</Button></td>
         </tr>)
       )}
       </tbody>

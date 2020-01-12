@@ -9,7 +9,6 @@ import Step2 from "./Step2";
  * @param props
  */
 export default function Steps({step, ...props}) {
-  console.log('rendering step ' + step);
   const mySteps = [
     Step0,
     Step1,

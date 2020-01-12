@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
+import EditModal from "../components/directory/EditModal";
+
 import {
   filterUsers,
   DirectoryView
@@ -21,6 +23,21 @@ function DirectoryPage() {
   let [users, setUsers] = useState([]);
   let [search, setSearch] = useState("");
   let [currentPage, setCurrentPage] = useState(1);
+  const [userToEdit, setUserToEdit] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  /**
+   * Handle click on Edit button in directory table.
+   * @param e
+   */
+  function handleUserEdit(e) {
+    const uid = e.target.parentElement.id;
+    const user = users.find((acct) => {
+      return acct.login.username === uid;
+    });
+    setShowModal(true);
+    setUserToEdit(user);
+  }
 
   function handleSearch(e) {
     setSearch(e.target.value);
@@ -28,7 +45,6 @@ function DirectoryPage() {
 
   function handlePageChange(e) {
     let newPage = parseInt(e.target.getAttribute('page'));
-    console.log(newPage);
     setCurrentPage(newPage);
   }
 
@@ -55,7 +71,6 @@ function DirectoryPage() {
     items.push(<Pagination.Item page={i} onClick={handlePageChange} key={i}
                                 active={currentPage === i}>{i}</Pagination.Item>)
   }
-
   return (
     <Container>
       <Row>
@@ -70,7 +85,8 @@ function DirectoryPage() {
       </Row>
       <Row>
         <Col md={{span: 8}}>
-          <DirectoryView users={paginatedUsers}/>
+          <DirectoryView users={paginatedUsers} handleUserEdit={handleUserEdit}/>
+          {showModal && <EditModal user={userToEdit} setShowModal={setShowModal}/>}
         </Col>
       </Row>
       <Row className="justify-content-md-center">
