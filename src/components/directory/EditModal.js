@@ -1,14 +1,16 @@
+import React, {useContext} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ReactDOM from "react-dom";
-import React from "react";
+import EditModalContext from "./EditModalContext";
 
 /**
  * Edit User Modal
- * @param user
- * @param setShowModal
  */
-export default function EditModal({user, setShowModal}) {
+export default function EditModal() {
+  // Get state from context
+  const [showModal, setShowModal] = useContext(EditModalContext);
+  if (!showModal) return null;
   const modal = (
     <Modal.Dialog>
       <Modal.Header closeButton onClick={() => {setShowModal(false)}}>

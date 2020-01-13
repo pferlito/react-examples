@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
 import EditModal from "../components/directory/EditModal";
+import EditModalContextProvider from "../components/directory/EditModalContextProvider";
 
 import {
   filterUsers,
@@ -86,7 +87,9 @@ function DirectoryPage() {
       <Row>
         <Col md={{span: 8}}>
           <DirectoryView users={paginatedUsers} handleUserEdit={handleUserEdit}/>
-          {showModal && <EditModal user={userToEdit} setShowModal={setShowModal}/>}
+          <EditModalContextProvider showModal={showModal} setShowModal={setShowModal}>
+            <EditModal user={userToEdit} />
+          </EditModalContextProvider>
         </Col>
       </Row>
       <Row className="justify-content-md-center">
