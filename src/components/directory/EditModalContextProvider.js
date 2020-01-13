@@ -1,7 +1,7 @@
 import React from 'react';
 import EditModalContext from "./EditModalContext";
 
-const EditModalContextProvider = (props) => {
+export default function EditModalContextProvider(props) {
   const {showModal, setShowModal} = props;
   return (
     <EditModalContext.Provider value={[showModal, setShowModal]}> {/* pass state as context */}
@@ -9,5 +9,3 @@ const EditModalContextProvider = (props) => {
     </EditModalContext.Provider>
   );
 };
-
-export default EditModalContextProvider;

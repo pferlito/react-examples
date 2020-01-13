@@ -55,4 +55,3 @@ export function DirectoryView({users, handleUserEdit}) {
     </Table>
   )
 }
-

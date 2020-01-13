@@ -1,5 +1,5 @@
-import React from "react";
+import React, {createContext} from "react";
 
-const EditModalContext = React.createContext([]);
+const EditModalContext = createContext([]);
 
 export default EditModalContext;

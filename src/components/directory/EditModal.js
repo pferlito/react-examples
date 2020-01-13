@@ -7,7 +7,7 @@ import EditModalContext from "./EditModalContext";
 /**
  * Edit User Modal
  */
-export default function EditModal() {
+export default function EditModal({user}) {
   // Get state from context
   const [showModal, setShowModal] = useContext(EditModalContext);
   if (!showModal) return null;

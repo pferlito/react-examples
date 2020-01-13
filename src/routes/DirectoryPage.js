@@ -6,12 +6,15 @@ import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
 import EditModal from "../components/directory/EditModal";
 import EditModalContextProvider from "../components/directory/EditModalContextProvider";
+import {filterUsers, DirectoryView} from "../components/directory/DirectoryView";
 
-import {
-  filterUsers,
-  DirectoryView
-} from "../components/directory/DirectoryView";
-
+/**
+ * Paginate an array
+ * @param array
+ * @param page_size
+ * @param page_number
+ * @returns {array}
+ */
 function paginate(array, page_size, page_number) {
   --page_number; // because pages logically start with 1, but technically with 0
   return array.slice(page_number * page_size, (page_number + 1) * page_size);
@@ -29,7 +32,7 @@ function DirectoryPage() {
 
   /**
    * Handle click on Edit button in directory table.
-   * @param e
+   * @param e event object
    */
   function handleUserEdit(e) {
     const uid = e.target.parentElement.id;
@@ -40,15 +43,22 @@ function DirectoryPage() {
     setUserToEdit(user);
   }
 
+  /**
+   * Handle keyword search.
+   * @param e event object
+   */
   function handleSearch(e) {
     setSearch(e.target.value);
   }
 
+  /**
+   * Handle pagination click.
+   * @param e event object
+   */
   function handlePageChange(e) {
     let newPage = parseInt(e.target.getAttribute('page'));
     setCurrentPage(newPage);
   }
-
 
   useEffect(() => {
     async function getData() {
@@ -77,7 +87,7 @@ function DirectoryPage() {
       <Row>
         <Col md={{span: 8}}>
           <Form>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="keywordSearch">
               <Form.Control onChange={handleSearch} type="text"
                             placeholder="Search"/>
             </Form.Group>
