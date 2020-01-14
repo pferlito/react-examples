@@ -9,6 +9,7 @@
   position: fixed;
   width: 100%;
   top: 20vh;
+  z-index: 2;
 }
 
 .cart .btn-link {
