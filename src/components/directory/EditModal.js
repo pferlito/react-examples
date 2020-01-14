@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ReactDOM from "react-dom";
 import EditModalContext from "./EditModalContext";
+import EditUserForm from "./EditUserForm";
 
 /**
  * Edit User Modal
@@ -18,7 +19,9 @@ export default function EditModal({user}) {
       </Modal.Header>
 
       <Modal.Body>
-        <p>Form Here</p>
+        <form>
+          <EditUserForm user={user}/>
+        </form>
       </Modal.Body>
 
       <Modal.Footer>

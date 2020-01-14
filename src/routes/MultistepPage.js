@@ -1,6 +1,4 @@
 import React, {useState, useRef, Fragment} from 'react';
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Steps from "../components/multistep/Steps";
 import StepNav from "../components/multistep/StepNav";

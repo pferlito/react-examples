@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import TextField from "./fields/TextField";
+import TextField from "../common/TextField";
 import CustomSelect from "./fields/CustomSelect";
 import PropTypes from "prop-types";
 

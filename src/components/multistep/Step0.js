@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import TextField from "../checkout/fields/TextField";
+import TextField from "../common/TextField";
 
 export default function Step0({handleChange, state}) {
   return (
