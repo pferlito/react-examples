@@ -13,18 +13,15 @@ function handleSave(e) {
  * Set an object's nested property given a property chain array.
  * @param obj The object to operate on.
  * @param propChain The property chain.
- * @param valueToSet The value to set.
+ * @param val The value to set.
+ * @param index The current index in the property chain.
  */
-function setNestedProperty(obj, propChain, valueToSet) {
-  let len = propChain.length;
-  let ptr = obj;
-  propChain.forEach(function (prop, index, array) {
-    if (index === len - 1) {
-      ptr[prop] = valueToSet;
-    } else {
-      ptr = ptr[prop];
-    }
-  });
+function setNestedProperty(obj, propChain, val, index = 0) {
+  if (index < propChain.length - 1) {
+    setNestedProperty(obj[propChain[index]], propChain, val, ++index);
+  } else {
+    obj[propChain[index]] = val;
+  }
 }
 
 /**
