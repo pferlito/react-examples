@@ -1,9 +1,31 @@
-import React, {useContext} from "react";
+import React, {useState, useContext} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ReactDOM from "react-dom";
 import EditModalContext from "./EditModalContext";
 import EditUserForm from "./EditUserForm";
+
+function handleSave(e) {
+  console.log("in save handler");
+}
+
+/**
+ * Set an object's nested property given a property chain array.
+ * @param obj The object to operate on.
+ * @param propChain The property chain.
+ * @param valueToSet The value to set.
+ */
+function setNestedProperty(obj, propChain, valueToSet) {
+  let len = propChain.length;
+  let ptr = obj;
+  propChain.forEach(function (prop, index, array) {
+    if (index === len - 1) {
+      ptr[prop] = valueToSet;
+    } else {
+      ptr = ptr[prop];
+    }
+  });
+}
 
 /**
  * Edit User Modal
@@ -11,21 +33,34 @@ import EditUserForm from "./EditUserForm";
 export default function EditModal({user}) {
   // Get state from context
   const [showModal, setShowModal] = useContext(EditModalContext);
+  const [editingUser, setEditingUser] = useState(user);
+
+  function handleChange(e) {
+    let mutatedUser = {...editingUser};
+    let propChain = e.target.id.split('.');
+    setNestedProperty(mutatedUser, propChain, e.target.value);
+    setEditingUser(mutatedUser);
+  }
+
   if (!showModal) return null;
   const modal = (
     <Modal.Dialog>
-      <Modal.Header closeButton onClick={() => {setShowModal(false)}}>
+      <Modal.Header closeButton onClick={() => {
+        setShowModal(false)
+      }}>
         <Modal.Title>Edit User</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <form>
-          <EditUserForm user={user}/>
+          <EditUserForm user={user} handleChange={handleChange}/>
         </form>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+        <Button variant="primary" onClick={() => handleSave}>Save</Button>
+        <Button variant="secondary"
+                onClick={() => setShowModal(false)}>Cancel</Button>
       </Modal.Footer>
     </Modal.Dialog>
   );

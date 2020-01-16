@@ -98,7 +98,7 @@ function DirectoryPage() {
         <Col md={{span: 8}}>
           <DirectoryView users={paginatedUsers} handleUserEdit={handleUserEdit}/>
           <EditModalContextProvider showModal={showModal} setShowModal={setShowModal}>
-            <EditModal user={userToEdit} />
+            {userToEdit && <EditModal user={userToEdit} />}
           </EditModalContextProvider>
         </Col>
       </Row>

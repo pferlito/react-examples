@@ -4,18 +4,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TextField from "../common/TextField"
 
-
-function handleChange(e) {
-  console.log('in handleChange');
-}
-
-export default function EditUserForm({user}) {
+export default function EditUserForm({user, handleChange}) {
   return (
     <Container>
       <Row>
         <Col className="mb-3">
           <TextField
-            id="FirstName"
+            id="name.first"
             label="First name"
             required="required"
             value={user.name.first}
@@ -25,7 +20,7 @@ export default function EditUserForm({user}) {
         </Col>
         <Col className="mb-3">
           <TextField
-            id="LastName"
+            id="name.last"
             label="Last name"
             required="required"
             value={user.name.last}
@@ -37,10 +32,22 @@ export default function EditUserForm({user}) {
       <Row>
         <Col className="mb-3">
           <TextField
-            id="Username"
+            id="login.username"
             label="Username"
             required="required"
             value={user.login.username}
+            handleChange={handleChange}
+            require="required"
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mb-3">
+          <TextField
+            id="email"
+            label="Email"
+            required="required"
+            value={user.email}
             handleChange={handleChange}
             require="required"
           />
