@@ -36,12 +36,10 @@ function DirectoryPage() {
   const [showModal, setShowModal] = useState(false);
 
   /**
-   * Handle a save operation.
+   * Save an edited user.
    * @param e event object
    */
   function handleSave(e) {
-    console.log(userToEdit);
-    console.log(users);
     const userName = userToEdit.login.username;
     const usersCopy = [...users];
     let userIndex = usersCopy.findIndex((acct,index) => {
