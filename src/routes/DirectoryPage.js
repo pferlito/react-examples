@@ -6,8 +6,12 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
 import EditModal from "../components/directory/EditModal";
-import EditModalContextProvider from "../components/directory/EditModalContextProvider";
-import {filterUsers, DirectoryView} from "../components/directory/DirectoryView";
+import EditModalContextProvider
+  from "../components/directory/EditModalContextProvider";
+import {
+  filterUsers,
+  DirectoryView
+} from "../components/directory/DirectoryView";
 
 /**
  * Paginate an array
@@ -30,6 +34,22 @@ function DirectoryPage() {
   let [currentPage, setCurrentPage] = useState(1);
   const [userToEdit, setUserToEdit] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  /**
+   * Handle a save operation.
+   * @param e event object
+   */
+  function handleSave(e) {
+    console.log(userToEdit);
+    console.log(users);
+    const userName = userToEdit.login.username;
+    const usersCopy = [...users];
+    let userIndex = usersCopy.findIndex((acct,index) => {
+      return acct.login.username === userName;
+    });
+    usersCopy[userIndex] = userToEdit;
+    setUsers(usersCopy);
+  }
 
   /**
    * Handle click on Edit button in directory table.
@@ -99,9 +119,12 @@ function DirectoryPage() {
       </Row>
       <Row>
         <Col md={{span: 8}}>
-          <DirectoryView users={paginatedUsers} handleUserEdit={handleUserEdit}/>
-          <EditModalContextProvider showModal={showModal} setShowModal={setShowModal}>
-            {userToEdit && <EditModal user={userToEdit} />}
+          <DirectoryView users={paginatedUsers}
+                         handleUserEdit={handleUserEdit}/>
+          <EditModalContextProvider showModal={showModal}
+                                    setShowModal={setShowModal}>
+            {userToEdit &&
+            <EditModal user={userToEdit} handleSave={handleSave}/>}
           </EditModalContextProvider>
         </Col>
       </Row>

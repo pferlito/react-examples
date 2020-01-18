@@ -5,10 +5,6 @@ import ReactDOM from "react-dom";
 import EditModalContext from "./EditModalContext";
 import EditUserForm from "./EditUserForm";
 
-function handleSave(e) {
-  console.log("in save handler");
-}
-
 /**
  * Set an object's nested property given a property chain array.
  * @param obj The object to operate on.
@@ -27,7 +23,7 @@ function setNestedProperty(obj, propChain, val, index = 0) {
 /**
  * Edit User Modal
  */
-export default function EditModal({user}) {
+export default function EditModal({user, handleSave}) {
   // Get state from context
   const [showModal, setShowModal] = useContext(EditModalContext);
   const [editingUser, setEditingUser] = useState(user);
@@ -55,7 +51,7 @@ export default function EditModal({user}) {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="primary" onClick={() => handleSave}>Save</Button>
+        <Button variant="primary" onClick={handleSave}>Save</Button>
         <Button variant="secondary"
                 onClick={() => setShowModal(false)}>Cancel</Button>
       </Modal.Footer>
