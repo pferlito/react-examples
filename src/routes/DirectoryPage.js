@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import cloneDeep from "lodash.clonedeep";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -40,7 +41,9 @@ function DirectoryPage() {
       return acct.login.username === uid;
     });
     setShowModal(true);
-    setUserToEdit(user);
+    // make a copy of the user object for editing
+    const userCopy = cloneDeep(user);
+    setUserToEdit(userCopy);
   }
 
   /**
