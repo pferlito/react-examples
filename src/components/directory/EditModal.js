@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ReactDOM from "react-dom";
-import EditModalContext from "./EditModalContext";
+import {EditModalContext} from "./EditModalContextProvider";
 import EditUserForm from "./EditUserForm";
 
 /**
@@ -23,16 +23,15 @@ function setNestedProperty(obj, propChain, val, index = 0) {
 /**
  * Edit User Modal
  */
-export default function EditModal({user, handleSave}) {
+export default function EditModal({handleSave}) {
   // Get state from context
-  const [showModal, setShowModal] = useContext(EditModalContext);
-  const [editingUser, setEditingUser] = useState(user);
+  const [showModal, setShowModal, userToEdit, setUserToEdit] = useContext(EditModalContext);
 
   function handleChange(e) {
-    let mutatedUser = {...editingUser};
+    let mutatedUser = {...userToEdit};
     let propChain = e.target.id.split('.');
     setNestedProperty(mutatedUser, propChain, e.target.value);
-    setEditingUser(mutatedUser);
+    setUserToEdit(mutatedUser);
   }
 
   if (!showModal) return null;
@@ -46,7 +45,7 @@ export default function EditModal({user, handleSave}) {
 
       <Modal.Body>
         <form>
-          <EditUserForm user={user} handleChange={handleChange}/>
+          <EditUserForm user={userToEdit} handleChange={handleChange}/>
         </form>
       </Modal.Body>
 

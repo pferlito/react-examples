@@ -120,9 +120,11 @@ function DirectoryPage() {
           <DirectoryView users={paginatedUsers}
                          handleUserEdit={handleUserEdit}/>
           <EditModalContextProvider showModal={showModal}
-                                    setShowModal={setShowModal}>
+                                    setShowModal={setShowModal}
+                                    userToEdit={userToEdit}
+                                    setUserToEdit={setUserToEdit}>
             {userToEdit &&
-            <EditModal user={userToEdit} handleSave={handleSave}/>}
+            <EditModal handleSave={handleSave}/>}
           </EditModalContextProvider>
         </Col>
       </Row>
