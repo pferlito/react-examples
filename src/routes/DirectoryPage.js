@@ -34,6 +34,7 @@ function DirectoryPage() {
   let [currentPage, setCurrentPage] = useState(1);
   const [userToEdit, setUserToEdit] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   /**
    * Save an edited user.
@@ -88,6 +89,7 @@ function DirectoryPage() {
       let data = await response.json();
       data = data.results;
       setUsers(data);
+      setLoading(false);
     }
 
     getData();
@@ -117,8 +119,9 @@ function DirectoryPage() {
       </Row>
       <Row>
         <Col md={{span: 8}}>
-          <DirectoryView users={paginatedUsers}
-                         handleUserEdit={handleUserEdit}/>
+          {loading && <div className="loader" />}
+          {!loading && <DirectoryView users={paginatedUsers}
+                         handleUserEdit={handleUserEdit}/>}
           <EditModalContextProvider showModal={showModal}
                                     setShowModal={setShowModal}
                                     userToEdit={userToEdit}

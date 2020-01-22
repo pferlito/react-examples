@@ -10,6 +10,16 @@ export default function EditUserForm({user, handleChange}) {
       <Row>
         <Col className="mb-3">
           <TextField
+            id="login.username"
+            label="Username"
+            value={user.login.username}
+            readOnly
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mb-3">
+          <TextField
             id="name.first"
             label="First name"
             value={user.name.first}
@@ -24,16 +34,6 @@ export default function EditUserForm({user, handleChange}) {
             value={user.name.last}
             handleChange={handleChange}
             required="required"
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col className="mb-3">
-          <TextField
-            id="login.username"
-            label="Username"
-            value={user.login.username}
-            readOnly
           />
         </Col>
       </Row>
