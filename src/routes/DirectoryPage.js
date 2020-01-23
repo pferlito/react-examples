@@ -37,13 +37,31 @@ function DirectoryPage() {
   const [loading, setLoading] = useState(true);
 
   /**
+   * Find a user by user name.
+   * @param userName
+   */
+  function findUser(userName) {
+    return users.findIndex((acct, index) => {
+      return acct.login.username === userName;
+    });
+  }
+
+  function handleDelete(e) {
+    const userName = userToEdit.login.username;
+    const index = findUser(userName);
+    const usersCopy = [...users];
+    usersCopy.splice(index, 1);
+    setUsers(usersCopy);
+  }
+
+  /**
    * Save an edited user.
    * @param e event object
    */
   function handleSave(e) {
     const userName = userToEdit.login.username;
     const usersCopy = [...users];
-    let userIndex = usersCopy.findIndex((acct,index) => {
+    let userIndex = usersCopy.findIndex((acct, index) => {
       return acct.login.username === userName;
     });
     usersCopy[userIndex] = userToEdit;
@@ -55,10 +73,9 @@ function DirectoryPage() {
    * @param e event object
    */
   function handleUserEdit(e) {
-    const uid = e.target.parentElement.id;
-    const user = users.find((acct) => {
-      return acct.login.username === uid;
-    });
+    const userName = e.target.parentElement.id;
+    const index = findUser(userName);
+    const user = users[index];
     setShowModal(true);
     // make a copy of the user object for editing
     const userCopy = cloneDeep(user);
@@ -119,15 +136,15 @@ function DirectoryPage() {
       </Row>
       <Row>
         <Col md={{span: 8}}>
-          {loading && <div className="loader" />}
+          {loading && <div className="loader"/>}
           {!loading && <DirectoryView users={paginatedUsers}
-                         handleUserEdit={handleUserEdit}/>}
+                                      handleUserEdit={handleUserEdit}/>}
           <EditModalContextProvider showModal={showModal}
                                     setShowModal={setShowModal}
                                     userToEdit={userToEdit}
                                     setUserToEdit={setUserToEdit}>
             {userToEdit &&
-            <EditModal handleSave={handleSave}/>}
+            <EditModal handleSave={handleSave} handleDelete={handleDelete}/>}
           </EditModalContextProvider>
         </Col>
       </Row>

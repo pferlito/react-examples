@@ -23,10 +23,14 @@ function setNestedProperty(obj, propChain, val, index = 0) {
 /**
  * Edit User Modal
  */
-export default function EditModal({handleSave}) {
+export default function EditModal({handleSave , handleDelete}) {
   // Get state from context
   const [showModal, setShowModal, userToEdit, setUserToEdit] = useContext(EditModalContext);
 
+  /**
+   * Handle a change to a field in the Edit User Form.
+   * @param e
+   */
   function handleChange(e) {
     let mutatedUser = {...userToEdit};
     let propChain = e.target.id.split('.');
@@ -35,11 +39,10 @@ export default function EditModal({handleSave}) {
   }
 
   if (!showModal) return null;
+
   const modal = (
     <Modal.Dialog>
-      <Modal.Header closeButton onClick={() => {
-        setShowModal(false)
-      }}>
+      <Modal.Header closeButton onClick={() => {setShowModal(false)}}>
         <Modal.Title>Edit User</Modal.Title>
       </Modal.Header>
 
@@ -53,8 +56,10 @@ export default function EditModal({handleSave}) {
         <Button variant="primary" onClick={handleSave}>Save</Button>
         <Button variant="secondary"
                 onClick={() => setShowModal(false)}>Cancel</Button>
+        <Button variant="danger" onClick={handleDelete}>Delete</Button>
       </Modal.Footer>
     </Modal.Dialog>
   );
+
   return ReactDOM.createPortal(modal, document.getElementById('portal'));
 }
