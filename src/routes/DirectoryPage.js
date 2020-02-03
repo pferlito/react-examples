@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import Pagination from "react-bootstrap/Pagination";
 import EditModal from "../components/directory/EditModal";
 import EditModalContextProvider
@@ -35,6 +36,10 @@ function DirectoryPage() {
   const [userToEdit, setUserToEdit] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [confirmation, setConfirmation] = useState({
+    show: false,
+    message: "Success"
+  });
 
   /**
    * Find a user by user name.
@@ -46,12 +51,18 @@ function DirectoryPage() {
     });
   }
 
+  /**
+   * Delete a user.
+   * @param e
+   */
   function handleDelete(e) {
     const userName = userToEdit.login.username;
     const index = findUser(userName);
     const usersCopy = [...users];
     usersCopy.splice(index, 1);
     setUsers(usersCopy);
+    setShowModal(false);
+    setConfirmation({show: true, message: "User Deleted"});
   }
 
   /**
@@ -66,6 +77,8 @@ function DirectoryPage() {
     });
     usersCopy[userIndex] = userToEdit;
     setUsers(usersCopy);
+    setShowModal(false);
+    setConfirmation({show: true, message: "User Saved"});
   }
 
   /**
@@ -126,6 +139,11 @@ function DirectoryPage() {
     <Container>
       <Row>
         <Col md={{span: 8}}>
+          {confirmation.show &&
+          <Alert variant="success">
+            {confirmation.message}
+          </Alert>
+          }
           <Form>
             <Form.Group controlId="keywordSearch">
               <Form.Control onChange={handleSearch} type="text"
