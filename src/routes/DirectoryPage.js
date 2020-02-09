@@ -37,9 +37,7 @@ function DirectoryPage() {
   const [userToEdit, setUserToEdit] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  const confirmation = useConfirmation();
-  const showConfirmation = confirmation.showConfirmation;
-  const getConfirmation = confirmation.getConfirmation();
+  const {showConfirmation, getConfirmation} = useConfirmation();;
 
   /**
    * Confirmation component.
@@ -48,7 +46,7 @@ function DirectoryPage() {
    */
   function Confirmation() {
     return (<Alert variant="success">
-      {getConfirmation.message}
+      {getConfirmation().message}
     </Alert>)
   }
 
@@ -150,7 +148,7 @@ function DirectoryPage() {
     <Container>
       <Row>
         <Col md={{span: 8}}>
-          {getConfirmation.show && <Confirmation />}
+          {getConfirmation().show && <Confirmation />}
           <Form>
             <Form.Group controlId="keywordSearch">
               <Form.Control onChange={handleSearch} type="text"
