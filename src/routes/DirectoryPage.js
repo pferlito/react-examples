@@ -62,7 +62,7 @@ function DirectoryPage() {
     usersCopy.splice(index, 1);
     setUsers(usersCopy);
     setShowModal(false);
-    setConfirmation({show: true, message: "User Deleted"});
+    showConfirmation("User Deleted");
   }
 
   /**
@@ -78,7 +78,18 @@ function DirectoryPage() {
     usersCopy[userIndex] = userToEdit;
     setUsers(usersCopy);
     setShowModal(false);
-    setConfirmation({show: true, message: "User Saved"});
+    showConfirmation("User Saved");
+  }
+
+  /**
+   * Show a confirmation message after an operation.
+   * @param message
+   */
+  function showConfirmation(message) {
+    setConfirmation({show: true, message});
+    setTimeout(() => {
+      setConfirmation({show: false, message: ""});
+    },3000);
   }
 
   /**
