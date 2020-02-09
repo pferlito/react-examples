@@ -4,15 +4,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
 import Pagination from "react-bootstrap/Pagination";
 import EditModal from "../components/directory/EditModal";
+import useConfirmation from "../hooks/useConfirmation"
 import EditModalContextProvider
   from "../components/directory/EditModalContextProvider";
 import {
   filterUsers,
   DirectoryView
 } from "../components/directory/DirectoryView";
+import Alert from "react-bootstrap/Alert";
 
 /**
  * Paginate an array
@@ -36,10 +37,20 @@ function DirectoryPage() {
   const [userToEdit, setUserToEdit] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [confirmation, setConfirmation] = useState({
-    show: false,
-    message: "Success"
-  });
+  const confirmation = useConfirmation();
+  const showConfirmation = confirmation.showConfirmation;
+  const getConfirmation = confirmation.getConfirmation();
+
+  /**
+   * Confirmation component.
+   * @returns {boolean|*}
+   * @constructor
+   */
+  function Confirmation() {
+    return (<Alert variant="success">
+      {getConfirmation.message}
+    </Alert>)
+  }
 
   /**
    * Find a user by user name.
@@ -79,17 +90,6 @@ function DirectoryPage() {
     setUsers(usersCopy);
     setShowModal(false);
     showConfirmation("User Saved");
-  }
-
-  /**
-   * Show a confirmation message after an operation.
-   * @param message
-   */
-  function showConfirmation(message) {
-    setConfirmation({show: true, message});
-    setTimeout(() => {
-      setConfirmation({show: false, message: ""});
-    },3000);
   }
 
   /**
@@ -150,11 +150,7 @@ function DirectoryPage() {
     <Container>
       <Row>
         <Col md={{span: 8}}>
-          {confirmation.show &&
-          <Alert variant="success">
-            {confirmation.message}
-          </Alert>
-          }
+          {getConfirmation.show && <Confirmation />}
           <Form>
             <Form.Group controlId="keywordSearch">
               <Form.Control onChange={handleSearch} type="text"
