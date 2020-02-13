@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TextField from "../common/TextField"
+import PropTypes from "prop-types";
 
 export default function EditUserForm({user, handleChange}) {
   return (
@@ -51,3 +52,8 @@ export default function EditUserForm({user, handleChange}) {
     </Container>
   );
 }
+
+EditUserForm.propTypes = {
+  user: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};

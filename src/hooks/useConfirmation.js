@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import Alert from "react-bootstrap/Alert";
+import {useState} from 'react';
 
+/**
+ * Hook that provides a confirmation message.
+ */
 export default function useConfirmation() {
   const [confirmation, setConfirmation] = useState({
     show: false,

@@ -1,4 +1,5 @@
 import React, {createContext} from 'react';
+import PropTypes from "prop-types";
 
 export const EditModalContext = createContext([]);
 
@@ -12,4 +13,8 @@ export default function EditModalContextProvider(props) {
       {props.children}
     </EditModalContext.Provider>
   );
+};
+
+EditModalContextProvider.propTypes = {
+  props: PropTypes.object.isRequired,
 };

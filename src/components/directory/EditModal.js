@@ -1,9 +1,10 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ReactDOM from "react-dom";
 import {EditModalContext} from "./EditModalContextProvider";
 import EditUserForm from "./EditUserForm";
+import PropTypes from "prop-types";
 
 /**
  * Set an object's nested property given a property chain array.
@@ -63,3 +64,8 @@ export default function EditModal({handleSave , handleDelete}) {
 
   return ReactDOM.createPortal(modal, document.getElementById('portal'));
 }
+
+EditModal.propTypes = {
+  handleSave: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+};

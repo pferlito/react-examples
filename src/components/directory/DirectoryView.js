@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
 
 export function filterUsers(users, search) {
   let filteredUsers;
@@ -55,3 +56,8 @@ export function DirectoryView({users, handleUserEdit}) {
     </Table>
   )
 }
+
+DirectoryView.propTypes = {
+  users: PropTypes.object.isRequired,
+  handleUserEdit: PropTypes.func.isRequired,
+};
