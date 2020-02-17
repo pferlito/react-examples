@@ -60,3 +60,11 @@ button.edit_btn {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.wishlist-item {
+  height: 60px;
+  width: 200px;
+  padding: 20px;
+  background: #f5deb3;
+  margin-bottom: 5px;
+}

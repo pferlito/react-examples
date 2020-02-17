@@ -20,7 +20,7 @@ export default function WishlistPage() {
     return (
       <Draggable draggableId={item.id} index={index}>
         {provided => (
-          <div
+          <div className="wishlist-item"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -36,7 +36,7 @@ export default function WishlistPage() {
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="list">
         {(provided) => (
-          <div ref={provided.innerRef}
+          <div className="wishlist-container" ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           >
