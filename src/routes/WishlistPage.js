@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 export default function WishlistPage() {
 
@@ -7,7 +10,7 @@ export default function WishlistPage() {
     console.log('on drag end');
   }
 
-  const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
+  const initial = Array.from({length: 10}, (v, k) => k).map(k => {
     return {
       id: `id-${k}`,
       content: `Item ${k}`
@@ -16,19 +19,25 @@ export default function WishlistPage() {
 
   console.log(initial);
 
-  function WishListItem({ item, index }) {
+  function WishListItem({item, index}) {
     return (
-      <Draggable draggableId={item.id} index={index}>
-        {provided => (
-          <div className="wishlist-item"
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            {item.content}
-          </div>
-        )}
-      </Draggable>
+      <Container>
+        <Row>
+          <Col md={{span: 4, offset: 4}}>
+            <Draggable draggableId={item.id} index={index}>
+              {provided => (
+                <div className="wishlist-item"
+                     ref={provided.innerRef}
+                     {...provided.draggableProps}
+                     {...provided.dragHandleProps}
+                >
+                  {item.content}
+                </div>
+              )}
+            </Draggable>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
@@ -37,14 +46,14 @@ export default function WishlistPage() {
       <Droppable droppableId="list">
         {(provided) => (
           <div className="wishlist-container" ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
+               {...provided.draggableProps}
+               {...provided.dragHandleProps}
           >
             <WishListItem item={{id: 'item-0', content: 'Item 0'}} index={0}/>
             <WishListItem item={{id: 'item-1', content: 'Item 1'}} index={1}/>
             {provided.placeholder}
           </div>
-          )}
+        )}
       </Droppable>
     </DragDropContext>
   );
