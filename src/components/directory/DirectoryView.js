@@ -58,6 +58,6 @@ export function DirectoryView({users, handleUserEdit}) {
 }
 
 DirectoryView.propTypes = {
-  users: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   handleUserEdit: PropTypes.func.isRequired,
 };

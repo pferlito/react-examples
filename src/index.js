@@ -7,6 +7,7 @@ import ModalPage from "./routes/ModalPage";
 import FormPage from "./routes/FormPage";
 import MultistepPage from "./routes/MultistepPage";
 import DirectoryPage from "./routes/DirectoryPage";
+import WishlistPage from "./routes/WishlistPage";
 import Nav from "react-bootstrap/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
@@ -19,6 +20,7 @@ const routing = (
       <Nav.Link href="/checkout">Checkout Form</Nav.Link>
       <Nav.Link href="/multistep">Multistep Form</Nav.Link>
       <Nav.Link href="/directory">Directory</Nav.Link>
+      <Nav.Link href="/wishlist">Wish List</Nav.Link>
     </Nav>
     <Switch>
       <Route exact path="/"><App /></Route>
@@ -26,6 +28,7 @@ const routing = (
       <Route path="/checkout"><FormPage /></Route>
       <Route path="/multistep"><MultistepPage steps={3}/></Route>
       <Route path="/directory"><DirectoryPage/></Route>
+      <Route path="/wishlist"><WishlistPage/></Route>
     </Switch>
   </Router>
 );

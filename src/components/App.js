@@ -21,6 +21,8 @@ function App() {
               <dd>A Multistep survey form.</dd>
               <dt><a href="/directory">Directory</a></dt>
               <dd>A searchable directory.</dd>
+              <dt><a href="/wishlist">Wish List</a></dt>
+              <dd>A reorderable wish list</dd>
             </dl>
           </div>
         </Col>

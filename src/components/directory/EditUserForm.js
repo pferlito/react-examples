@@ -9,13 +9,16 @@ export default function EditUserForm({user, handleChange}) {
   return (
     <Container>
       <Row>
-        <Col className="mb-3">
+        <Col className="mb-3" md={{ span: 9}}>
           <TextField
             id="login.username"
             label="Username"
             value={user.login.username}
             readOnly
           />
+        </Col>
+        <Col className="mb-3" md={{ span: 3 }}>
+          <img alt="user name" src={user.picture.medium} />
         </Col>
       </Row>
       <Row>

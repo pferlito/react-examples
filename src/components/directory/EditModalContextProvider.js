@@ -16,5 +16,5 @@ export default function EditModalContextProvider(props) {
 };
 
 EditModalContextProvider.propTypes = {
-  props: PropTypes.object.isRequired,
+  props: PropTypes.object,
 };
