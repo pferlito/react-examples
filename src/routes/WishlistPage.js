@@ -10,14 +10,18 @@ export default function WishlistPage() {
     console.log('on drag end');
   }
 
-  const initial = Array.from({length: 10}, (v, k) => k).map(k => {
+  const initial = Array.from({length: 9}, (v, k) => k).map(k => {
     return {
       id: `id-${k}`,
       content: `Item ${k}`
     };
   });
 
-  console.log(initial);
+  function WishList() {
+    return initial.map((item,idx) => {
+      return (<WishListItem item={{id: item.id, content: item.content}} index={idx} />)
+    }, null);
+  }
 
   function WishListItem({item, index}) {
     return (
@@ -49,8 +53,7 @@ export default function WishlistPage() {
                {...provided.draggableProps}
                {...provided.dragHandleProps}
           >
-            <WishListItem item={{id: 'item-0', content: 'Item 0'}} index={0}/>
-            <WishListItem item={{id: 'item-1', content: 'Item 1'}} index={1}/>
+            <WishList />
             {provided.placeholder}
           </div>
         )}
