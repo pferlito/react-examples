@@ -6,8 +6,9 @@ import Container from "react-bootstrap/Container";
 
 export default function WishlistPage() {
 
-  function onDragEnd() {
+  function onDragEnd(result) {
     console.log('on drag end');
+    console.log(result);
   }
 
   const initial = Array.from({length: 9}, (v, k) => k).map(k => {
@@ -19,7 +20,7 @@ export default function WishlistPage() {
 
   function WishList() {
     return initial.map((item,idx) => {
-      return (<WishListItem item={{id: item.id, content: item.content}} index={idx} />)
+      return (<WishListItem key={item.id} item={{id: item.id, content: item.content}} index={idx} />)
     }, null);
   }
 
