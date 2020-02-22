@@ -16,7 +16,8 @@ function WishListItem({item, index}) {
                    {...provided.draggableProps}
                    {...provided.dragHandleProps}
               >
-                {item.content}
+                <h5>{item.title}</h5>
+                <h6>{item.price}</h6>
               </div>
             )}
           </Draggable>
@@ -27,25 +28,51 @@ function WishListItem({item, index}) {
 }
 
 function WishList({items}) {
-  return items.map((item,idx) => {
-    return (<WishListItem key={item.id} item={{id: item.id, content: item.content}} index={idx} />)
+  return items.map((item, idx) => {
+    return (<WishListItem key={item.id} item={item} index={idx}/>)
   }, null);
 }
 
+/**
+ * Reorder the list.
+ * @param list
+ * @param sourceIndex
+ * @param destIndex
+ * @returns Array
+ */
+function reorder(list, sourceIndex, destIndex) {
+  const listCopy = [...list];
+  const el = listCopy.splice(sourceIndex, 1).pop();
+  listCopy.splice(destIndex, 0, el);
+  return listCopy;
+}
+
 export default function WishlistPage() {
-  const initial = Array.from({length: 9}, (v, k) => k).map(k => {
-    return {
-      id: `id-${k}`,
-      content: `Item ${k}`
-    };
-  });
+  const initial = [
+    {
+      id: 'id-0',
+      title: 'Toaster',
+      price: '$55'
+    },
+    {
+      id: 'id-1',
+      title: 'Refrigerator',
+      price: '$650'
+
+    },
+    {
+      id: 'id-2',
+      title: 'Dishwasher',
+      price: '$750'
+    },
+  ];
+
   const [list, setList] = useState(initial);
 
   function onDragEnd(result) {
-    console.log('on drag end');
-    console.log(result);
+    const newList = reorder(list, result.source.index, result.destination.index);
+    setList(newList);
   }
-
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
