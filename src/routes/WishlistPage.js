@@ -3,12 +3,13 @@ import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import image from "../images/reorder.png";
 
 function WishListItem({item, index}) {
   return (
     <Container>
       <Row>
-        <Col md={{span: 4, offset: 4}}>
+        <Col md={{span: 3, offset: 4}}>
           <Draggable draggableId={item.id} index={index}>
             {provided => (
               <div className="wishlist-item"
@@ -16,8 +17,13 @@ function WishListItem({item, index}) {
                    {...provided.draggableProps}
                    {...provided.dragHandleProps}
               >
-                <h5>{item.title}</h5>
-                <h6>{item.price}</h6>
+                <div className="content-wrap">
+                  <h7>{item.title}</h7>
+                  <h6>{item.price}</h6>
+                </div>
+                <div className="handle-wrap">
+                  <img alt="reorder" src={image} />
+                </div>
               </div>
             )}
           </Draggable>
@@ -65,6 +71,11 @@ export default function WishlistPage() {
       title: 'Dishwasher',
       price: '$750'
     },
+    {
+      id: 'id-3',
+      title: 'Blender',
+      price: '$150'
+    },
   ];
 
   const [list, setList] = useState(initial);
@@ -76,6 +87,7 @@ export default function WishlistPage() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <h4 className="mb-3 text-center">Wish List (drag to reorder)</h4>
       <Droppable droppableId="list">
         {(provided) => (
           <div className="wishlist-container" ref={provided.innerRef}
